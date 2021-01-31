@@ -1,0 +1,6 @@
+[
+    {
+      "name": "NXP",
+      "toolchainFile": "${workspaceRoot}/toolchain.cmake"     
+    }
+  ]

@@ -1,0 +1,11 @@
+{
+    "cmake.configureOnOpen": true,
+    "git.enableSmartCommit": true,
+    "editor.minimap.enabled": true,
+    "editor.formatOnSave": true,
+    "cmake.configureSettings": {
+        "CMAKE_TOOLCHAIN_FILE" : "${workspaceRoot}/toolchain.cmake"
+    },
+    "cmake.generator": "Ninja",
+    "cmake.parallelJobs": 0
+    }

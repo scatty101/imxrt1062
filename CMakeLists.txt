@@ -7,6 +7,9 @@ set(CMAKE_SYSTEM_PROCESSOR ARM)
 project(imxrt1062 VERSION 0.0.0
         LANGUAGES ASM C CXX)
 
+
+set(PROJECT_NAMESPACE imxrt1062)
+
 # Languages def
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -20,7 +23,9 @@ set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/build)
 # Common 
 
 
-# C compile flags for subprojects
+# C compile flags for subprojects. 
+
+
 
 
 # CXX compile flags for subprojects
@@ -31,20 +36,7 @@ set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/build)
 # Common defs
 
 # Adding subprojects
-# add_subdirectory(hardware)
+add_subdirectory(hardware)
 
-
-# lets try compile first executable
-add_executable(${PROJECT_NAME})
-
-target_include_directories(${PROJECT_NAME}
-PUBLIC
-${CMAKE_CURRENT_SOURCE_DIR}
-)
-
-target_sources(${PROJECT_NAME}
-PUBLIC
-main.cpp
-)
 
 
