@@ -1,6 +1,6 @@
 # I.MX RT1062
 
-Drivers and utils i.MX RT1062
+Drivers and utilities for i.MX RT1062
 
 ## Tests
 

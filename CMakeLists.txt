@@ -132,6 +132,7 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -u _scanf_float")
 # Adding subprojects
 
 add_subdirectory(gtest)         # Test framework
+add_subdirectory(utility)       # Utilities
 add_subdirectory(hardware)      # Hardware definitions for used mcu
 add_subdirectory(drivers)       # Drivers from sdk and own implementation
 
