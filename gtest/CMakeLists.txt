@@ -36,6 +36,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/googletest/googlemock/include
 # We can use gtest-all.cc and gmock-all.cc, as its includes other source files
 target_sources(${PROJECT_NAME}
 PUBLIC
+${CMAKE_CURRENT_SOURCE_DIR}/gtest-completion.c
 ${CMAKE_CURRENT_SOURCE_DIR}/googletest/googletest/src/gtest-all.cc
 ${CMAKE_CURRENT_SOURCE_DIR}/googletest/googlemock/src/gmock-all.cc
 )
