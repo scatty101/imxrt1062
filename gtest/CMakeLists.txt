@@ -4,7 +4,7 @@ project(tests)
 
 
 add_library(${PROJECT_NAME})
-add_library("${PROJECT_NAMESPACE}::${PROJECT_NAME}" ALIAS ${PROJECT_NAME})
+add_library(${PROJECT_NAMESPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 # Based on gtest-port.h 
 # Well, its bare metal, lets that we don't have any of these

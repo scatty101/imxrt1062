@@ -2,8 +2,14 @@
 #include <stdio.h>
 
 #include <gtest/gtest.h>
+#include <utility.hpp>
 
 static void gtest_init();
+
+enum class test
+{
+    bla = 1,
+};
 
 // Custom delay, cant be better now
 inline void custom_delay(const std::uint32_t &delay_cycles = 1)
@@ -20,6 +26,7 @@ std::uint32_t delay_cycles = EXPECTED_CPU_CLOCK / (1000ul); // So it should be a
 
 int main(void)
 {
+    auto bla = utility::enum_value(test::bla);
     gtest_init();
     printf("Hi! Main started\n");
     while (1)
