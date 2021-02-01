@@ -20,6 +20,7 @@ target_sources(${PROJECT_NAME}
 PUBLIC
 ${CMAKE_CURRENT_SOURCE_DIR}/src/cpp_config.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/src/semihost_hardfault.c
+${CMAKE_CURRENT_SOURCE_DIR}/inc/device/system_MIMXRT1062.c
 )
 
 install(TARGETS ${PROJECT_NAME}

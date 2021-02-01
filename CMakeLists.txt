@@ -31,6 +31,7 @@ add_definitions(-DCPU_MIMXRT1062CVL5A
                 -DSDK_OS_BAREMETAL 
                 -DSDK_DEBUGCONSOLE=0 
                 -DCR_INTEGER_PRINTF 
+                -D__MCUXPRESSO
                 -DPRINTF_FLOAT_ENABLE=0  
                 -D__USE_CMSIS 
                 -DDEBUG 
@@ -124,7 +125,7 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Xlinker")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --cref")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--defsym=_HeapSize=0x1000")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--defsym=_StackSize=0x1000")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -T${GLOBAL_PROJECT_SOURCE_DIR}/linker/flash.ld")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -T${CMAKE_CURRENT_SOURCE_DIR}/linker/flash.ld")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -u _printf_float") 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -u _scanf_float")
 
