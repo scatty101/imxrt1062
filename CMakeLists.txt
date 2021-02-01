@@ -8,7 +8,7 @@ project(imxrt1062 VERSION 0.0.0
         LANGUAGES ASM C CXX)
 
 
-set(PROJECT_NAMESPACE imxrt1062)
+set(PROJECT_NAMESPACE ${PROJECT_NAME})
 
 # Languages def
 set(CMAKE_C_STANDARD 99)
@@ -129,7 +129,9 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -u _printf_float")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -u _scanf_float")
 
 # Adding subprojects
-add_subdirectory(hardware)
+
+add_subdirectory(hardware)      # Hardware definitions for used mcu
+add_subdirectory(drivers)       # Drivers from sdk and own implementation
 
 
 

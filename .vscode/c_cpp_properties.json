@@ -3,7 +3,8 @@
     {
       "name": "Win32",
       "includePath": [
-        "${workspaceFolder}/**",
+        "${workspaceFolder}/hardware/**",
+        "${workspaceFolder}/drivers/**",
         "C:/nxp/MCUXpressoIDE_11.2.0_4120/ide/tools/arm-none-eabi/include/**"
       ],
       "defines": [
