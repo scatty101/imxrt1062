@@ -14,9 +14,8 @@ constexpr std::uint32_t EXPECTED_CPU_CLOCK = 600 * 1000ul * 1000ul;
 
 std::uint32_t delay_cycles = EXPECTED_CPU_CLOCK / (1000ul); // So it should be around 1s
 
-int main()
+int main(void)
 {
-
     printf("Hi! Main started\n");
     while (1)
     {

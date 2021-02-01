@@ -56,6 +56,15 @@ ${CMAKE_CURRENT_SOURCE_DIR}/sdk/xip/evkmimxrt1060_flexspi_nor_config.c
 ${CMAKE_CURRENT_SOURCE_DIR}/sdk/xip/fsl_flexspi_nor_boot.c
 )
 
+
+# Supress missing declalaration warning for generated startup file
+set_property(SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/sdk/startup/startup_mimxrt1062.cpp
+PROPERTY
+COMPILE_FLAGS -Wno-missing-declarations)
+
+
+
+
 # well, we need hardware config
 target_link_libraries(${PROJECT_NAME}
 PUBLIC
@@ -74,6 +83,11 @@ add_executable(${PROJECT_NAME_TESTS})
 target_sources(${PROJECT_NAME_TESTS}
 PRIVATE
 app/src/main.cpp)
+
+# Also lets get rid of int main() missing declarations warning
+set_property(SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/app/src/main.cpp
+PROPERTY
+COMPILE_FLAGS -Wno-missing-declarations)
 
 target_link_libraries(${PROJECT_NAME_TESTS}
 PRIVATE
