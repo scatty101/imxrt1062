@@ -84,7 +84,10 @@ COMPILE_FLAGS -Wno-missing-declarations)
 
 target_link_libraries(${PROJECT_NAME_TESTS}
 PRIVATE
-"${PROJECT_NAMESPACE}::drivers")
+"${PROJECT_NAMESPACE}::drivers"
+"${PROJECT_NAMESPACE}::tests"
+)
+
 
 install(TARGETS ${PROJECT_NAME}
 RUNTIME DESTINATION out)

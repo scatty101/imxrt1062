@@ -5,6 +5,7 @@
       "includePath": [
         "${workspaceFolder}/hardware/**",
         "${workspaceFolder}/drivers/**",
+        "${workspaceFolder}/gtest/**",
         "C:/nxp/MCUXpressoIDE_11.2.0_4120/ide/tools/arm-none-eabi/include/**"
       ],
       "defines": [

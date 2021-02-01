@@ -1,6 +1,10 @@
 #include <cstdint>
 #include <stdio.h>
 
+#include <gtest/gtest.h>
+
+static void gtest_init();
+
 // Custom delay, cant be better now
 inline void custom_delay(const std::uint32_t &delay_cycles = 1)
 {
@@ -16,6 +20,7 @@ std::uint32_t delay_cycles = EXPECTED_CPU_CLOCK / (1000ul); // So it should be a
 
 int main(void)
 {
+    gtest_init();
     printf("Hi! Main started\n");
     while (1)
     {
@@ -24,4 +29,11 @@ int main(void)
     }
 
     return 0;
+}
+
+static void gtest_init()
+{
+    ::testing::InitGoogleTest();
+
+    auto tests = RUN_ALL_TESTS();
 }
