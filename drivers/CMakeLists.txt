@@ -68,6 +68,23 @@ install(TARGETS ${PROJECT_NAME}
 
 # Okay, so for now its 
 
+set(PROJECT_NAME_TESTS app)
+add_executable(${PROJECT_NAME_TESTS})
+
+target_sources(${PROJECT_NAME_TESTS}
+PRIVATE
+app/src/main.cpp)
+
+target_link_libraries(${PROJECT_NAME_TESTS}
+PRIVATE
+"${PROJECT_NAMESPACE}::drivers")
+
+install(TARGETS ${PROJECT_NAME}
+RUNTIME DESTINATION out)
+
+
+
+
 
 
 
