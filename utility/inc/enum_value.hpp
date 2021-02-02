@@ -9,7 +9,7 @@ namespace utility
     template <typename enum_t>
     constexpr auto enum_value(enum_t enum_val)
     {
-        static_assert(std::is_enum_v<enum_t>, "error: is not enum value");
+        static_assert(std::is_enum_v<enum_t>, "must be enum value");
         return (static_cast<std::underlying_type_t<enum_t>>(enum_val));
     }
 

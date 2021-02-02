@@ -35,4 +35,5 @@
 build/
 cmake/
 CMakeFiles/
+.vscode/c_cpp_properties.json
 
