@@ -2,7 +2,6 @@
 #define IMXRT1062_UTILITY_EDGE_H_
 
 #include <cstdint>
-
 namespace utility
 {
     /**
@@ -14,22 +13,37 @@ namespace utility
      * @tparam T base type 
      */
     template <typename T>
-    class edge_detect
+    class edge_t
     {
         T last_;            /*!< Holds last value */
         bool rising_edge_;  /*!< Current state of rising edge*/
         bool falling_edge_; /*!< Current state of falling edge */
 
     public:
-        edge_detect(edge_detect &) = delete;
-        edge_detect &operator=(edge_detect &) = delete;
-        ~edge_detect() = default;
-
         /**
-         * @brief Construct a new edge detect object
+         * @brief Copy constructor is forbidden 
          * 
          */
-        edge_detect() noexcept : last_(static_cast<T>(0)), rising_edge_(false), falling_edge_(false)
+        edge_t(const edge_t &) = delete;
+
+        /**
+         * @brief Move is forbidden
+         * 
+         * @return edge_t& 
+         */
+        edge_t &operator=(const edge_t &) = delete;
+
+        /**
+         * @brief Destroy the edge t object
+         * 
+         */
+        ~edge_t() = default;
+
+        /**
+         * @brief Construct a new edge t object
+         * 
+         */
+        edge_t() noexcept : last_(static_cast<T>(0)), rising_edge_(false), falling_edge_(false)
         {
         }
 

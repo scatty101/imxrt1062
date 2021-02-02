@@ -68,8 +68,6 @@ install(TARGETS ${PROJECT_NAME}
 		LIBRARY DESTINATION lib
 		ARCHIVE DESTINATION lib)
 
-# Okay, so for now its 
-
 set(PROJECT_NAME_TESTS app)
 add_executable(${PROJECT_NAME_TESTS})
 

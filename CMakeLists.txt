@@ -38,15 +38,20 @@ add_definitions(-DCPU_MIMXRT1062CVL5A
                 -D__NEWLIB__ 
 )
 
+
+# Common flags for different languages
+set(CPU_FLAGS "-mcpu=cortex-m7 -mthumb")
+set(FPU_FLAGS "-mfpu=fpv5-sp-d16 -mfloat-abi=hard")
+set(HEAP_SIZE 0x1000)
+set(STACK_SIZE 0x1000)
+
 # Flags were taken from NXP SDK examples 
 # ASM flags
-set(CMAKE_ASM_FLAGS "-mcpu=cortex-m7 -mthumb -mfpu=fpv5-so-d16 -mfloat-abi=hard -x assembler-with-cpp" CACHE INTERNAL "asm compiler flags")
+set(CMAKE_ASM_FLAGS "${CPU_FLAGS} ${FPU_FLAGS} -x assembler-with-cpp" CACHE INTERNAL "asm compiler flags")
 
 # C compile flags for subprojects
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mcpu=cortex-m7")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mthumb") 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mfpu=fpv5-sp-d16")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mfloat-abi=hard")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${CPU_FLAGS}")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${FPU_FLAGS}")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --specs=nano.specs")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-common")
@@ -63,10 +68,8 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -funsigned-char")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wfatal-errors")
 
 # CXX compile flags for subprojects
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mcpu=cortex-m7")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mthumb") 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mfpu=fpv5-sp-d16")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mfloat-abi=hard")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CPU_FLAGS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${FPU_FLAGS}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --specs=nano.specs")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-common")
@@ -108,10 +111,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-sized-deallocation")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wfatal-errors")
 
 # Linker flags for subprojects
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mcpu=cortex-m7")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mthumb") 
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mfpu=fpv5-sp-d16")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mfloat-abi=hard")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${CPU_FLAGS}")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${FPU_FLAGS}")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -nostdlib")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Xlinker")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --Map=" ${PROJECT_NAME}.map"") 
@@ -123,8 +124,8 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Xlinker")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --sort-section=alignment")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Xlinker")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --cref")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--defsym=_HeapSize=0x1000")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--defsym=_StackSize=0x1000")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--defsym=_HeapSize=${HEAP_SIZE}")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--defsym=_StackSize=${STACK_SIZE}")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -T${CMAKE_CURRENT_SOURCE_DIR}/linker/flash.ld")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -u _printf_float") 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -u _scanf_float")

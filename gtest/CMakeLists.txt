@@ -41,6 +41,10 @@ ${CMAKE_CURRENT_SOURCE_DIR}/googletest/googletest/src/gtest-all.cc
 ${CMAKE_CURRENT_SOURCE_DIR}/googletest/googlemock/src/gmock-all.cc
 )
 
+set_property(SOURCE gtest-all.cc gmock-all.cc
+APPEND_STRING
+PROPERTY 
+COMPILE_FLAGS " -Wno-psabi -Wno-pedantic -Wno-missing-declarations")
 
 install(TARGETS ${PROJECT_NAME}
         LIBRARY DESTINATION lib
