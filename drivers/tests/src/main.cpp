@@ -26,7 +26,7 @@ std::uint32_t delay_cycles = EXPECTED_CPU_CLOCK / (1000ul); // So it should be a
 
 int main(void)
 {
-    auto bla = utility::enum_value(test::bla);
+    auto bla = imxutility::enum_value(test::bla);
     gtest_init();
     printf("Hi! Main started\n");
     while (1)

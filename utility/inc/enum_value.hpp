@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <type_traits>
 
-namespace utility
+namespace imxutility
 {
     template <typename enum_t>
     constexpr auto enum_value(enum_t enum_val)
@@ -13,6 +13,6 @@ namespace utility
         return (static_cast<std::underlying_type_t<enum_t>>(enum_val));
     }
 
-} // namespace utility
+} // namespace imxutility
 
 #endif // IMXRT1062_UTILITY_ENUM_VALUE_H

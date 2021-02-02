@@ -68,12 +68,12 @@ install(TARGETS ${PROJECT_NAME}
 		LIBRARY DESTINATION lib
 		ARCHIVE DESTINATION lib)
 
-set(PROJECT_NAME_TESTS app)
+set(PROJECT_NAME_TESTS drivers_tests)
 add_executable(${PROJECT_NAME_TESTS})
 
 target_sources(${PROJECT_NAME_TESTS}
 PRIVATE
-app/src/main.cpp)
+tests/src/main.cpp)
 
 # Also lets get rid of int main() missing declarations warning
 set_property(SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/app/src/main.cpp

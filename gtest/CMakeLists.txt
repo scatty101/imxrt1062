@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.15.3)
 
 project(tests)
 
-
 add_library(${PROJECT_NAME})
 add_library(${PROJECT_NAMESPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 

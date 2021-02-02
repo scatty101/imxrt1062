@@ -2,7 +2,7 @@
 #define IMXRT1062_UTILITY_EDGE_H_
 
 #include <cstdint>
-namespace utility
+namespace imxutility
 {
     /**
      * @brief Simple edge detect class. 
@@ -88,6 +88,6 @@ namespace utility
         }
     };
 
-} // namespace utility
+} // namespace imxutility
 
 #endif // IMXRT1062_UTILITY_EDGE_H_

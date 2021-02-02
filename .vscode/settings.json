@@ -9,6 +9,9 @@
     "cmake.generator": "Ninja",
     "cmake.parallelJobs": 0,
     "files.associations": {
-        "stat.h": "c"
+        "stat.h": "c",
+        "optional": "cpp",
+        "utility": "cpp",
+        "tuple": "cpp"
     }
 }
