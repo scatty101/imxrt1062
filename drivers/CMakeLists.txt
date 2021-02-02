@@ -19,7 +19,9 @@ target_include_directories(${PROJECT_NAME}
 						${CMAKE_CURRENT_SOURCE_DIR}/sdk/drivers
 						${CMAKE_CURRENT_SOURCE_DIR}/sdk/startup
 						${CMAKE_CURRENT_SOURCE_DIR}/sdk/xip
-)
+
+						${CMAKE_CURRENT_SOURCE_DIR}/inc
+						)
 
 
 target_sources(${PROJECT_NAME}

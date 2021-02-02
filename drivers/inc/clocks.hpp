@@ -3,7 +3,7 @@
 
 namespace imxdrivers
 {
-
+    // Implementation of clock enabling via hardware type
 }
 
 #endif //  IMXRT1062_DRIVERS_CLOCKS_H_
