@@ -13,5 +13,7 @@
         "optional": "cpp",
         "utility": "cpp",
         "tuple": "cpp"
-    }
+    },
+    
+    "cortex-debug.armToolchainPath": "C:/nxp/MCUXpressoIDE_11.2.0_4120/ide/tools/bin",
 }
