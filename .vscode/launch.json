@@ -10,7 +10,7 @@
             "name": "Drivers tests",
             "cwd": "${workspaceFolder}",
             "executable": "${workspaceFolder}/build/drivers/drivers_tests",
-            "serverpath": "JLinkGDBServerCL",
+            "serverpath": "C:\\Program Files (x86)\\SEGGER\\JLink\\JLinkGDBServerCL.exe",
             "servertype": "jlink",
             "device": "MIMXRT1062xxx6A",
             "interface": "swd",
