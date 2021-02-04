@@ -33,6 +33,7 @@ std::uint32_t delay_cycles = EXPECTED_CPU_CLOCK / (1000ul); // So it should be a
 
 int main(void)
 {
+
     /*
     auto clock = gpt_clock.get_clock(imxdrivers::default_specification{GPT1});
     imxdrivers::default_specification gt{GPT1};
