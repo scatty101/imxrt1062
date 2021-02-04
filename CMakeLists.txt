@@ -42,7 +42,7 @@ add_definitions(-DCPU_MIMXRT1062CVL5A
 # Common flags for different languages
 set(CPU_FLAGS "-mcpu=cortex-m7 -mthumb")
 set(FPU_FLAGS "-mfpu=fpv5-sp-d16 -mfloat-abi=hard")
-set(HEAP_SIZE 0x1000)
+set(HEAP_SIZE 0x15000)
 set(STACK_SIZE 0x1000)
 
 # Flags were taken from NXP SDK examples 

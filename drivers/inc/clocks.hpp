@@ -60,7 +60,7 @@ namespace imxdrivers
         {
         }
 
-        std::optional<clock_t> get_clock(const specification<peripheral_t> &spec) noexcept
+        std::optional<clock_hw_t> get_clock(const specification<peripheral_t> &spec) noexcept
         {
             auto satisfied = [&](const peripheral_t &elem) {
                 return spec.is_satisfied(elem);
