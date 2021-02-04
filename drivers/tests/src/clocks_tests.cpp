@@ -24,3 +24,4 @@ TEST(CLOCKS, GPT_TESTS)
         EXPECT_EQ(elem.first, gpt.get_clock(spec));
     }
 }
+
