@@ -12,7 +12,11 @@
         "stat.h": "c",
         "optional": "cpp",
         "utility": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "ctime": "cpp",
+        "chrono": "cpp",
+        "condition_variable": "cpp",
+        "shared_mutex": "cpp"
     },
     "cortex-debug.armToolchainPath": "C:/nxp/MCUXpressoIDE_11.2.0_4120/ide/tools/bin",  
 }

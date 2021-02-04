@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <stdio.h>
 
-#include <hardware.h>
+#include <hardware.hpp>
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 

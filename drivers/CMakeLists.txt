@@ -81,6 +81,7 @@ tests/inc)
 
 target_sources(${PROJECT_NAME_TESTS}
 PRIVATE
+src/init.cpp
 tests/main.cpp
 tests/src/clocks_tests.cpp
 )

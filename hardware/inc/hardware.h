@@ -1,6 +1,0 @@
-#ifndef IMXRT1062_HARDWARE_H_
-#define IMXRT1062_HARDWARE_H_
-
-#include <MIMXRT1062.h>
-
-#endif // IMXRT1062_HARDWARE_H_

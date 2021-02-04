@@ -646,6 +646,8 @@ extern unsigned int __data_section_table_end;
 extern unsigned int __bss_section_table;
 extern unsigned int __bss_section_table_end;
 
+#include "inc/init.hpp"
+
 //*****************************************************************************
 // Reset entry point for your code.
 // Sets up a simple runtime environment and initializes the C/C++
@@ -700,6 +702,8 @@ __attribute__((section(".after_vectors.reset"))) void ResetISR(void)
         SectionLen = *SectionTableAddr++;
         bss_init(ExeAddr, SectionLen);
     }
+
+    imxdrivers::init();
 
 #if !defined(__USE_CMSIS)
     // Assume that if __USE_CMSIS defined, then CMSIS SystemInit code

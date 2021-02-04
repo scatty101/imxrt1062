@@ -1,8 +1,8 @@
-#if !defined IMXRT1062_DRIVERS_CLOCKS_H_
-#define IMXRT1062_DRIVERS_CLOCKS_H_
+#if !defined IMXRT1062_DRIVERS_CLOCKS_HPP_
+#define IMXRT1062_DRIVERS_CLOCKS_HPP_
 
-#include "hardware.h"
-#include "fsl_clock.h"
+#include <hardware.hpp>
+#include <fsl_clock.h>
 
 #include <initializer_list>
 #include <optional>
@@ -10,7 +10,7 @@
 namespace imxdrivers
 {
     // Implementation of clock enabling via hardware type
-    using clock_t = clock_ip_name_t; /*!< Type used by SDK*/
+    using clock_hw_t = clock_ip_name_t; /*!< Type used by SDK*/
 
     /**
      * @brief Specification to find proper clock
@@ -47,16 +47,16 @@ namespace imxdrivers
     };
 
     template <typename peripheral_t>
-    class clock
+    class clock_t
     {
         template <typename T>
         using list_t = std::initializer_list<T>;
 
-        const list_t<clock_t> &clocks_;
+        const list_t<clock_hw_t> &clocks_;
         const list_t<peripheral_t> &peripherals_;
 
     public:
-        clock(const list_t<clock_ip_name_t> &_clocks, const list_t<peripheral_t> &_peripherals) noexcept : clocks_(_clocks), peripherals_(_peripherals)
+        clock_t(const list_t<clock_ip_name_t> &_clocks, const list_t<peripheral_t> &_peripherals) noexcept : clocks_(_clocks), peripherals_(_peripherals)
         {
         }
 
@@ -80,4 +80,4 @@ namespace imxdrivers
 
 } // namespace imxdrivers
 
-#endif //  IMXRT1062_DRIVERS_CLOCKS_H_
+#endif //  IMXRT1062_DRIVERS_CLOCKS_HPP_
