@@ -80,6 +80,83 @@
                 "continue",
                 "monitor halt",
             ],
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "name": "Utility tests",
+            "cwd": "${workspaceFolder}",
+            "executable": "${workspaceFolder}/build/tests/utility/utility_tests",
+            "serverpath": "C:\\Program Files (x86)\\SEGGER\\JLink\\JLinkGDBServerCL.exe", // It looks bad, but its totally needed.
+            "servertype": "jlink",
+            "device": "MIMXRT1062xxx6A",
+            "interface": "swd",
+            "serialNumber": "",
+            "runToMain": true,
+            "showDevDebugOutput": false,
+            "internalConsoleOptions": "openOnSessionStart",
+            "preLaunchTask": "build",
+            "svdFile": "${workspaceFolder}/svd/MIMXRT1062.svd",
+            "jlinkscript": "${workspaceFolder}/sdram_init.jlinkscript",
+            "serverArgs": [
+                "-nosilent",
+                "-swoport",
+                "2332",
+                "-select",
+                "USB",
+                "-singlerun",
+                "-endian",
+                "little",
+                "-noir",
+                "-speed",
+                "auto",
+                "-vd",
+                "-halt",
+                "-reportuseraction",
+            ],
+            "swoConfig": {
+                "source": "probe",
+                "enabled": false,
+                "swoFrequency": 3000000,
+                "decoders": [
+                    {
+                        "port": 0,
+                        "label": "Output",
+                    }
+                ]
+            },
+            "preLaunchCommands": [
+                "set mem inaccessible-by-default off",
+                "monitor speed 1000",
+                "monitor clrbp",
+                "monitor reset",
+                "monitor halt",
+                "monitor regs",
+                "monitor speed auto",
+                "monitor flash breakpoints 1",
+                "monitor semihosting enable",
+                "monitor semihosting IOClient 3"
+            ],
+            "postLaunchCommands": [
+                "monitor clrbp",
+                "monitor reset 2",
+                "monitor halt",
+                "monitor reset 0",
+                "thbreak main",
+                "monitor regs",
+                // "continue", // comment for break at main             
+                "monitor halt"             
+            ],
+            "postRestartCommands": [
+                "monitor clrbp",
+                "monitor reset 2",
+                "monitor halt",
+                "monitor reset 0",
+                "tbreak main",
+                "monitor regs",
+                "continue",
+                "monitor halt",
+            ],
         }
     ]
 }
