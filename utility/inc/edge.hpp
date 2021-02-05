@@ -59,7 +59,7 @@ namespace imxutility
             const bool any_edge = new_value ^ last_;
 
             rising_edge_ = any_edge and not last_;
-            falling_edge = any_edge and last_;
+            falling_edge_ = any_edge and last_;
 
             last_ = new_value;
 
