@@ -1,5 +1,5 @@
-#if !defined IMXRT1062_UTILITY_HPP_
-#define IMXRT1062_UTILITY_HPP_
+#if !defined IMXRT_UTILITY_HPP_
+#define IMXRT_UTILITY_HPP_
 
 #include <cstdint>
 #include <limits>
@@ -7,7 +7,6 @@
 
 namespace imxutility
 {
-
     template <typename T>
     class timer_t
     {
@@ -19,7 +18,7 @@ namespace imxutility
         static_assert(std::numeric_limits<T>::is_signed == false,
                       "the T must be unsigned");
 
-        timer_t() noexcept : tick_(static_cast<T>(0), running_(false)){};
+        timer_t() noexcept : tick_(static_cast<T>(0)), running_(false){};
 
         virtual ~timer_t() = default;
         virtual T get_time_elapsed() noexcept = 0;
@@ -60,4 +59,4 @@ namespace imxutility
 
 } // namespace imxutility
 
-#endif
+#endif // IMXRT_UTILITY_HPP_

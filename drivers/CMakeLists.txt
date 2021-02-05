@@ -54,6 +54,10 @@ ${CMAKE_CURRENT_SOURCE_DIR}/sdk/startup/startup_mimxrt1062.cpp
 # External flash cfg
 ${CMAKE_CURRENT_SOURCE_DIR}/sdk/xip/evkmimxrt1060_flexspi_nor_config.c
 ${CMAKE_CURRENT_SOURCE_DIR}/sdk/xip/fsl_flexspi_nor_boot.c
+
+# Own drivers cpp
+${CMAKE_CURRENT_SOURCE_DIR}/src/init.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/src/systick.cpp
 )
 # Supress missing declalaration warning for generated startup file
 set_property(SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/sdk/startup/startup_mimxrt1062.cpp
@@ -69,42 +73,6 @@ PUBLIC
 install(TARGETS ${PROJECT_NAME}
 		LIBRARY DESTINATION lib
 		ARCHIVE DESTINATION lib)
-
-set(PROJECT_NAME_TESTS drivers_tests)
-add_executable(${PROJECT_NAME_TESTS})
-
-
-target_include_directories(${PROJECT_NAME_TESTS}
-PRIVATE
-tests/
-tests/inc)
-
-target_sources(${PROJECT_NAME_TESTS}
-PRIVATE
-src/init.cpp
-tests/main.cpp
-tests/src/clocks_tests.cpp
-)
-
-# Also lets get rid of int main() missing declarations warning
-set_property(SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/app/src/main.cpp
-PROPERTY
-COMPILE_FLAGS -Wno-missing-declarations)
-
-target_link_libraries(${PROJECT_NAME_TESTS}
-PRIVATE
-"${PROJECT_NAMESPACE}::drivers"
-"${PROJECT_NAMESPACE}::tests"
-"${PROJECT_NAMESPACE}::utility"
-)
-
-
-install(TARGETS ${PROJECT_NAME}
-RUNTIME DESTINATION out)
-
-
-
-
 
 
 

@@ -1,5 +1,5 @@
-#if !defined IMXRT1062_DRIVERS_CLOCKS_HPP_
-#define IMXRT1062_DRIVERS_CLOCKS_HPP_
+#if !defined IMXRT_DRIVERS_CLOCKS_HPP_
+#define IMXRT_DRIVERS_CLOCKS_HPP_
 
 #include <hardware.hpp>
 #include <fsl_clock.h>
@@ -80,4 +80,4 @@ namespace imxdrivers
 
 } // namespace imxdrivers
 
-#endif //  IMXRT1062_DRIVERS_CLOCKS_HPP_
+#endif //  IMXRT_DRIVERS_CLOCKS_HPP_

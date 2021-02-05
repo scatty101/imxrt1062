@@ -1,5 +1,5 @@
-#if !defined IMXRT1062_DRIVERS_REG_HPP_
-#define IMXRT1062_DRIVERS_REG_HPP_
+#if !defined IMXRT_DRIVERS_REG_HPP_
+#define IMXRT_DRIVERS_REG_HPP_
 
 #include <hardware.hpp>
 
@@ -55,6 +55,13 @@ namespace imxdrivers
         *reinterpret_cast<volatile reg_t *>(reg) &= static_cast<reg_t>(~value);
     }
 
+    /**
+     * @brief Access to volatile registers. Performs read operation
+     * 
+     * @tparam reg_t 
+     * @param reg 
+     * @return constexpr reg_t 
+     */
     template <typename reg_t>
     static inline constexpr reg_t reg_read(reg_t *reg)
     {
@@ -63,4 +70,4 @@ namespace imxdrivers
 
 } // namespace imxdrivers
 
-#endif //  IMXRT1062_DRIVERS_REG_HPP_
+#endif //  IMXRT_DRIVERS_REG_HPP_

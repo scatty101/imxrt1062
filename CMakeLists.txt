@@ -35,7 +35,8 @@ add_definitions(-DCPU_MIMXRT1062CVL5A
                 -DPRINTF_FLOAT_ENABLE=0  
                 -D__USE_CMSIS 
                 -DDEBUG 
-                -D__NEWLIB__ 
+                -D__NEWLIB__
+                -DDISABLE_WDOG=1 
 )
 
 
@@ -137,6 +138,6 @@ add_subdirectory(gtest)         # Test framework
 add_subdirectory(utility)       # Utilities
 add_subdirectory(hardware)      # Hardware definitions for used mcu
 add_subdirectory(drivers)       # Drivers from sdk and own implementation
-
+add_subdirectory(tests)
 
 

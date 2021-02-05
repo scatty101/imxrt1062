@@ -1,5 +1,5 @@
-#if !defined IMXRT1062_DRIVERS_CPU_HPP_
-#define IMXRT1062_DRIVERS_CPU_HPP_
+#if !defined IMXRT_DRIVERS_CPU_HPP_
+#define IMXRT_DRIVERS_CPU_HPP_
 
 #include <hardware.hpp>
 #include <reg.hpp>
@@ -45,4 +45,4 @@ namespace imxdrivers
 
 } // namespace imxdrivers
 
-#endif // IMXRT1062_DRIVERS_CPU_HPP_
+#endif // IMXRT_DRIVERS_CPU_HPP_

@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Drivers tests",
             "cwd": "${workspaceFolder}",
-            "executable": "${workspaceFolder}/build/drivers/drivers_tests",
+            "executable": "${workspaceFolder}/build/tests/drivers/drivers_tests",
             "serverpath": "C:\\Program Files (x86)\\SEGGER\\JLink\\JLinkGDBServerCL.exe", // It looks bad, but its totally needed.
             "servertype": "jlink",
             "device": "MIMXRT1062xxx6A",
