@@ -12,8 +12,11 @@ ${CMAKE_CURRENT_SOURCE_DIR}/inc)
         
 target_sources(${PROJECT_NAME}
 PRIVATE
-${CMAKE_CURRENT_SOURCE_DIR}/src/edge_tests.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/utility_tests.cpp
+
+${CMAKE_CURRENT_SOURCE_DIR}/src/edge_tests.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/src/timer_tests.cpp
+
 )
         
 # Also lets get rid of int main() missing declarations warning

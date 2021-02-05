@@ -21,7 +21,7 @@ namespace imxutility
         timer_t() noexcept : tick_(static_cast<T>(0)), running_(false){};
 
         virtual ~timer_t() = default;
-        virtual T get_time_elapsed() noexcept = 0;
+        virtual T time_elapsed() noexcept = 0;
 
         inline bool running() const noexcept
         {
@@ -46,13 +46,13 @@ namespace imxutility
         inline void restart(const T &time) noexcept
         {
             running_ = true;
-            tick_ = get_time_elapsed() + time;
+            tick_ = time_elapsed() + time;
         }
 
     private:
-        inline bool timeout() const noexcept
+        inline bool timeout() noexcept
         {
-            const T DELTA = get_time_elapsed() - tick_;
+            const T DELTA = time_elapsed() - tick_;
             return DELTA <= TIMER_MASK;
         }
     };
