@@ -44,36 +44,27 @@ namespace imxdrivers
             return elem_ == item;
         }
     };
-
-    template <typename peripheral_t>
-    class clock_t
+    struct clock_t
     {
         template <typename T>
         using list_t = std::initializer_list<T>;
 
-        const list_t<clock_hw_t> &clocks_;
-        const list_t<peripheral_t> &peripherals_;
-
-    public:
-        clock_t(const list_t<clock_ip_name_t> &_clocks, const list_t<peripheral_t> &_peripherals) noexcept : clocks_(_clocks), peripherals_(_peripherals)
-        {
-        }
-
-        std::optional<clock_hw_t> get_clock(const specification<peripheral_t> &spec) noexcept
+        template <typename peripheral_t>
+        static std::optional<clock_hw_t> get_clock(const list_t<clock_hw_t> &clocks, const list_t<peripheral_t> &peripherals, const specification<peripheral_t> &spec)
         {
             auto satisfied = [&](const peripheral_t &elem) {
                 return spec.is_satisfied(elem);
             };
 
-            auto iterator = std::find_if(peripherals_.begin(), peripherals_.end(), satisfied);
-            if (iterator >= peripherals_.end())
+            auto iterator = std::find_if(peripherals.begin(), peripherals.end(), satisfied);
+            if (iterator == peripherals.end())
             {
                 return std::nullopt;
             }
 
-            auto pos = std::distance(peripherals_.begin(), iterator);
+            auto pos = std::distance(peripherals.begin(), iterator);
 
-            return *(clocks_.begin() + pos);
+            return *(clocks.begin() + pos);
         }
     };
 

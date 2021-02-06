@@ -53,7 +53,7 @@ namespace imxdrivers
         uart_hardware_t(const uart_hardware_t &) = delete;
         uart_hardware_t &operator=(const uart_hardware_t &) = delete;
 
-        uart_hardware_t(const uart_hw_t _uart, const uart_config_t &_config);
+        uart_hardware_t(const uart_hw_t _uart, const uart_config_t &_config) noexcept;
         ~uart_hardware_t();
 
         void config(const uart_config_t &cfg) noexcept;
@@ -64,6 +64,9 @@ namespace imxdrivers
         inline bool rx_full() noexcept;
 
         void dma_access_enable(const bool &tx_enable, const bool &rx_enable) noexcept;
+
+    private:
+        static void enable_clock(const uart_hw_t uart);
     };
 } // namespace imxdrivers
 

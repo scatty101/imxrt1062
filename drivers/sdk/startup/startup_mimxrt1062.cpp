@@ -41,6 +41,9 @@ extern "C"
 {
 #endif
 
+    void data_init(unsigned int, unsigned int, unsigned int);
+    void bss_init(unsigned int, unsigned int);
+
 //*****************************************************************************
 // Variable to store CRP value in. Will be placed automatically
 // by the linker when "Enable Code Read Protect" selected.

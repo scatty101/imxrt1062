@@ -6,14 +6,13 @@
 namespace imxdrivers
 {
     /**
-     * @brief Sometimes IRQ are executed so fast, that irq flag isn't cleared until leave of irq. This function solves this problem
+     * @brief Sometimes IRQ are executed so fast, that irq flag isn't cleared until leave of irq. This function solves this problem.
      * 
      */
     static inline void irq_save_exit()
     {
         __DSB();
     }
-
     /**
      * @brief Access to volatile registers. Performs OR operation.
      * 
