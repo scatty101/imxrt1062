@@ -1,7 +1,11 @@
 #include "tests.hpp"
-
 #include <utility.hpp>
 
+/**
+ * @brief Our test class with naive clock implementaton.
+ * 
+ * @tparam T system clock tick type
+ */
 template <typename T>
 class timer_test_t : public imxutility::timer_t<T>
 {
@@ -20,7 +24,7 @@ public:
 TEST(TIMER, TIMER_DEFAULT_VALUES)
 {
     timer_test_t<std::uint32_t> timer;
-    /* Timer after start should not be running or expired */
+    /* Timer after ctor should not be running or expired */
     EXPECT_FALSE(timer.running());
     EXPECT_FALSE(timer.expired());
 }
