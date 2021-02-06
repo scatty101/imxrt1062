@@ -1,4 +1,4 @@
-#if !defined IMXRT_DRIVERS_CPU_HPP_
+#ifndef IMXRT_DRIVERS_CPU_HPP_
 #define IMXRT_DRIVERS_CPU_HPP_
 
 #include <hardware.hpp>

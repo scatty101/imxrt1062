@@ -57,6 +57,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/sdk/xip/fsl_flexspi_nor_boot.c
 
 # Own drivers cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/src/init.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/src/clocks.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/src/systick.cpp
 )
 # Supress missing declalaration warning for generated startup file

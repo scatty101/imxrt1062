@@ -16,7 +16,30 @@
         "ctime": "cpp",
         "chrono": "cpp",
         "condition_variable": "cpp",
-        "shared_mutex": "cpp"
+        "shared_mutex": "cpp",
+        "initializer_list": "cpp"
     },
     "cortex-debug.armToolchainPath": "C:/nxp/MCUXpressoIDE_11.2.0_4120/ide/tools/bin",  
+    "CppHelper.HeaderGuardPattern": "IMXRT_{FILE}_HPP_",
+    "CppHelper.SourcePattern": [
+        "{FILE}.inl",
+        // "{FILE}.cpp",
+        "{FILE}.cxx",
+        "{FILE}.cc",
+        "{FILE}.cp",
+        "{FILE}.c",
+        "/src/{FILE}.inl",
+        "/src/{FILE}.cpp",
+        "/src/{FILE}.cxx",
+        "/src/{FILE}.cc",
+        "/src/{FILE}.cp",
+        "/src/{FILE}.c",
+        "/source/{FILE}.inl",
+        "/source/{FILE}.cpp",
+        "/source/{FILE}.cxx",
+        "/source/{FILE}.cc",
+        "/source/{FILE}.cp",
+        "/source/{FILE}.c"
+    ],
+
 }

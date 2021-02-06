@@ -4,9 +4,6 @@
 #include <gtest/gtest.h>
 #include <utility.hpp>
 
-#include "clocks.hpp"
-#include "timer.hpp"
-
 int main(void)
 {
     ::testing::InitGoogleTest();
