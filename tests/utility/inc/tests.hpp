@@ -1,5 +1,5 @@
-#if !defined IMXDRIVERS_TESTS_H_
-#define IMXDRIVERS_TESTS_H_
+#if !defined IMXUTILITY_TESTS_HPP_
+#define IMXUTILITY_TESTS_HPP_
 
 #include <cstdint>
 #include <stdio.h>
@@ -16,4 +16,4 @@ constexpr bool TEST_PRINT_ENABLE = false;
         printf(__VA__ARGS); \
     }
 
-#endif // IMXDRIVERS_TESTS_H_
+#endif // IMXUTILITY_TESTS_HPP_

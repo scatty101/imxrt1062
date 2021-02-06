@@ -1,4 +1,4 @@
-#include "tests.h"
+#include "tests.hpp"
 
 #include <inc/clocks.hpp>
 #include <utility>
@@ -24,4 +24,3 @@ TEST(CLOCKS, GPT_TESTS)
         EXPECT_EQ(elem.first, gpt.get_clock(spec));
     }
 }
-

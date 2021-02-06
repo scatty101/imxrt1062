@@ -25,7 +25,7 @@ namespace imxdrivers
     template <typename reg_t, typename value_t>
     static inline constexpr void reg_set(reg_t *reg, const value_t &value = static_cast<value_t>(0))
     {
-        *reintepret_cast<volatile reg_t *>(reg) |= static_cast<reg_t>(value);
+        *reinterpret_cast<volatile reg_t *>(reg) |= static_cast<reg_t>(value);
     }
     /**
      * @brief Access to volatile registers. Performs write operation.
@@ -38,7 +38,7 @@ namespace imxdrivers
     template <typename reg_t, typename value_t>
     static inline constexpr void reg_write(reg_t *reg, const value_t &value = static_cast<value_t>(0))
     {
-        *reintepret_cast<volatile reg_t *>(reg) = static_cast<reg_t>(value);
+        *reinterpret_cast<volatile reg_t *>(reg) = static_cast<reg_t>(value);
     }
 
     /**

@@ -5,11 +5,32 @@
 
 namespace imxdrivers
 {
-    systick_t::systick_t(const std::uint32_t &ticks) noexcept
+    systick_t::systick_t(const std::uint32_t &ticks, const bool &enable) noexcept
     {
-        SysTick_Config(ticks);
+        config(ticks, enable);
     }
 
+    systick_t::systick_t() noexcept
+    {
+    }
+
+    void systick_t::config(const std::uint32_t &ticks, const bool &enable) const noexcept
+    {
+        SysTick_Config(ticks);
+        this->enable(enable);
+    }
+
+    inline void systick_t::enable(const bool &enable) const noexcept
+    {
+        if (enable)
+        {
+            reg_set(&SysTick->CTRL, SysTick_CTRL_ENABLE_Msk);
+        }
+        else
+        {
+            reg_clear(&SysTick->CTRL, SysTick_CTRL_ENABLE_Msk);
+        }
+    }
     inline void systick_t::handler() noexcept
     {
         tick_++;
