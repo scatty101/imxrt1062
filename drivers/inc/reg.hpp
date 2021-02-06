@@ -5,6 +5,7 @@
 
 namespace imxdrivers
 {
+
     /**
      * @brief Sometimes IRQ are executed so fast, that irq flag isn't cleared until leave of irq. This function solves this problem.
      * 
@@ -14,7 +15,7 @@ namespace imxdrivers
         __DSB();
     }
     /**
-     * @brief Access to volatile registers. Performs OR operation.
+     * @brief Performs OR operation.
      * 
      * @tparam reg_t     
      * @tparam value_t 
@@ -22,12 +23,12 @@ namespace imxdrivers
      * @param value 
      */
     template <typename reg_t, typename value_t>
-    static inline constexpr void reg_set(reg_t *reg, const value_t &value = static_cast<value_t>(0))
+    static inline constexpr void reg_set(reg_t &reg, const value_t &value = static_cast<value_t>(0))
     {
-        *reinterpret_cast<volatile reg_t *>(reg) |= static_cast<reg_t>(value);
+        reg |= static_cast<reg_t>(value);
     }
     /**
-     * @brief Access to volatile registers. Performs write operation.
+     * @brief Performs write operation.
      * 
      * @tparam reg_t 
      * @tparam value_t 
@@ -35,13 +36,13 @@ namespace imxdrivers
      * @param value 
      */
     template <typename reg_t, typename value_t>
-    static inline constexpr void reg_write(reg_t *reg, const value_t &value = static_cast<value_t>(0))
+    static inline constexpr void reg_write(reg_t &reg, const value_t &value = static_cast<value_t>(0))
     {
-        *reinterpret_cast<volatile reg_t *>(reg) = static_cast<reg_t>(value);
+        reg = static_cast<reg_t>(value);
     }
 
     /**
-     * @brief Access to volatile registers. Peforms AND NOT operation
+     * @brief Peforms AND NOT operation
      * 
      * @tparam reg_t 
      * @tparam value_t 
@@ -49,22 +50,28 @@ namespace imxdrivers
      * @param value 
      */
     template <typename reg_t, typename value_t>
-    static inline constexpr void reg_clear(reg_t *reg, const value_t &value = static_cast<value_t>(0))
+    static inline constexpr void reg_clear(reg_t &reg, const value_t &value = static_cast<value_t>(0))
     {
-        *reinterpret_cast<volatile reg_t *>(reg) &= static_cast<reg_t>(~value);
+        reg &= static_cast<reg_t>(~value);
     }
 
     /**
-     * @brief Access to volatile registers. Performs read operation
+     * @brief Performs read operation
      * 
      * @tparam reg_t 
      * @param reg 
      * @return constexpr reg_t 
      */
     template <typename reg_t>
-    static inline constexpr reg_t reg_read(reg_t *reg)
+    static inline constexpr reg_t reg_read(reg_t &reg)
     {
-        return (*reinterpret_cast<volatile reg_t *>(reg));
+        return reg;
+    }
+
+    template <typename reg_t, typename bit_pos_t>
+    static inline constexpr void reg_clear_bit(reg_t &reg, const bit_pos_t &bit_pos)
+    {
+#warning "implement this"
     }
 
 } // namespace imxdrivers

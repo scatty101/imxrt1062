@@ -24,11 +24,11 @@ namespace imxdrivers
     {
         if (enable)
         {
-            reg_set(&SysTick->CTRL, SysTick_CTRL_ENABLE_Msk);
+            reg_set(SysTick->CTRL, SysTick_CTRL_ENABLE_Msk);
         }
         else
         {
-            reg_clear(&SysTick->CTRL, SysTick_CTRL_ENABLE_Msk);
+            reg_clear(SysTick->CTRL, SysTick_CTRL_ENABLE_Msk);
         }
     }
     inline void systick_t::handler() noexcept

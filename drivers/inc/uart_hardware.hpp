@@ -66,6 +66,8 @@ namespace imxdrivers
         void dma_access_enable(const bool &tx_enable, const bool &rx_enable) noexcept;
 
     private:
+        inline void dma_access_tx_enable(const bool &enable) noexcept;
+        inline void dma_access_rx_enable(const bool &enable) noexcept;
         static void enable_clock(const uart_hw_t uart);
     };
 } // namespace imxdrivers
