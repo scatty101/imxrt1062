@@ -28,7 +28,7 @@ namespace imxdrivers
     }
 
     /**
-     * @brief Get the cpu clock value
+     * @brief Returns predefined value for cpu clockk
      * 
      * @return constexpr std::uint32_t 
      */

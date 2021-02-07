@@ -28,7 +28,7 @@ namespace imxdrivers
      */
     static inline std::uint32_t core_cycles() noexcept
     {
-        return reg_read(DWT->CYCCNT);
+        return reg_get(DWT->CYCCNT);
     }
 
     /**

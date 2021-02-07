@@ -5,7 +5,6 @@
 
 namespace imxdrivers
 {
-
     /**
      * @brief Sometimes IRQ are executed so fast, that irq flag isn't cleared until leave of irq. This function solves this problem.
      * 
@@ -63,15 +62,15 @@ namespace imxdrivers
      * @return constexpr reg_t 
      */
     template <typename reg_t>
-    static inline constexpr reg_t reg_read(reg_t &reg)
+    static inline constexpr reg_t reg_get(const reg_t &reg)
     {
         return reg;
     }
 
     template <typename reg_t, typename bit_pos_t>
-    static inline bool reg_get_bit(reg_t &reg, const bit_pos_t &bit_pos)
+    static inline bool reg_get_bit(const reg_t &reg, const bit_pos_t &bit_pos)
     {
-        return reg_read(reg) >> bit_pos;
+        return (reg_get(reg) >> bit_pos) & 0x1;
     }
 
     template <typename reg_t, typename bit_pos_t>
