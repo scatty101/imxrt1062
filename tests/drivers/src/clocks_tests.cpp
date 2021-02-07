@@ -3,7 +3,6 @@
 #include <utility>
 #include <vector>
 
-
 template <typename T>
 using clock_pair_t = std::pair<imxdrivers::clock_hw_t, T>;
 
@@ -32,7 +31,7 @@ TEST(CLOCKS, GPT_TESTS)
     test_clocks.push_back(std::make_pair(kCLOCK_Gpt1, GPT1));
     test_clocks.push_back(std::make_pair(kCLOCK_Gpt2, GPT2));
 
-    test_spec<imxdrivers::default_specification<typeof(GPT1)>, typeof(GPT1)>(gpt_clocks, gpt_peripheral, test_clocks);
+    test_spec<imxdrivers::default_spec_t<typeof(GPT1)>, typeof(GPT1)>(gpt_clocks, gpt_peripheral, test_clocks);
 }
 
 TEST(CLOCKS, UART_CLOCKS)
@@ -50,6 +49,5 @@ TEST(CLOCKS, UART_CLOCKS)
     test_clocks.push_back(std::make_pair(kCLOCK_Lpuart6, LPUART6));
     test_clocks.push_back(std::make_pair(kCLOCK_Lpuart7, LPUART7));
     test_clocks.push_back(std::make_pair(kCLOCK_Lpuart8, LPUART8));
-
-    test_spec<imxdrivers::default_specification<typeof(LPUART1)>, typeof(LPUART1)>(uart_clocks, uart_peripherals, test_clocks);
+    test_spec<imxdrivers::uart_clock_spec_t, typeof(LPUART1)>(uart_clocks, uart_peripherals, test_clocks);
 }

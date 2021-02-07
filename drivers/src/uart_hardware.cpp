@@ -2,7 +2,6 @@
 
 #include <imxrt1062/utility.hpp>
 #include "reg.hpp"
-#include "clocks.hpp"
 
 using namespace imxutility;
 
@@ -90,7 +89,15 @@ namespace imxdrivers
         /* write the sbr value to the BAUD registers */
         reg_manipulate_mask(uart_->BAUD, LPUART_BAUD_SBR_MASK, LPUART_BAUD_SBR_SHIFT, sbr);
     }
+    void uart_hardware_t::set_data_bits(const uart_data_bits_t &data_bits) noexcept
+    {
+        const bool data_7_bits = data_bits == uart_data_bits_t::data_bits_7;
+        const bool data_8_bits = data_bits == uart_data_bits_t::data_bits_8;
+        const bool data_9_bits = not data_8_bits;
 
+        reg_manipulate_bit(uart_->CTRL, LPUART_CTRL_M7_SHIFT, data_7_bits);
+        reg_manipulate_bit(uart_->CTRL, LPUART_CTRL_M_SHIFT, data_9_bits);
+    }
     void uart_hardware_t::set_stop_bits(const uart_stop_bit_t &stop_bit_enum) noexcept
     {
         const bool stop_bit_2 = stop_bit_enum == uart_stop_bit_t::stop_bit_2;
@@ -207,7 +214,7 @@ namespace imxdrivers
         const static auto uart_peripherals = LPUART_BASE_PTRS;
         const static auto uart_clocks = LPUART_CLOCKS;
 
-        default_specification spec(uart);
+        uart_clock_spec_t spec(uart);
 
         auto clock = clock_t::get_clock(uart_clocks, uart_peripherals, spec);
 

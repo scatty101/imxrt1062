@@ -17,7 +17,7 @@ namespace imxdrivers
      * @tparam T usually it will be some kind of peripheral type, like GPT_Type *, LPUART_Type * etc.
      */
     template <typename T>
-    struct specification
+    struct spec_t
     {
         /**
          * @brief Method to compare next peripherals
@@ -30,12 +30,12 @@ namespace imxdrivers
     };
 
     template <typename T>
-    class default_specification : public specification<T>
+    class default_spec_t : public spec_t<T>
     {
         const T &elem_;
 
     public:
-        default_specification(const T &_elem) noexcept : elem_(_elem)
+        default_spec_t(const T &_elem) noexcept : elem_(_elem)
         {
         }
 
@@ -50,7 +50,7 @@ namespace imxdrivers
         using list_t = std::initializer_list<T>;
 
         template <typename peripheral_t>
-        static std::optional<clock_hw_t> get_clock(const list_t<clock_hw_t> &clocks, const list_t<peripheral_t> &peripherals, const specification<peripheral_t> &spec)
+        static std::optional<clock_hw_t> get_clock(const list_t<clock_hw_t> &clocks, const list_t<peripheral_t> &peripherals, const spec_t<peripheral_t> &spec)
         {
             auto satisfied = [&](const peripheral_t &elem) {
                 return spec.is_satisfied(elem);
@@ -67,7 +67,6 @@ namespace imxdrivers
             return *(clocks.begin() + pos);
         }
     };
-
 } // namespace imxdrivers
 
 #endif // IMXRT_DRIVERS_CLOCK_HANDLER_HPP_

@@ -2,12 +2,18 @@
 #define IMXRT_DRIVERS_UART_HARDWARE_HPP_
 
 #include <cstdint>
-
 #include <imxrt1062/hardware.hpp>
+#include "clocks.hpp"
 
 namespace imxdrivers
 {
     using uart_hw_t = LPUART_Type *;
+
+    class uart_clock_spec_t : public default_spec_t<uart_hw_t>
+    {
+    public:
+        using default_spec_t<uart_hw_t>::default_spec_t;
+    };
 
     enum class uart_baud_rate_t
     {
@@ -37,7 +43,9 @@ namespace imxdrivers
 
     enum class uart_data_bits_t
     {
-
+        data_bits_7,
+        data_bits_8,
+        data_bits_9
     };
 
     enum class uart_timeout_t
@@ -95,7 +103,7 @@ namespace imxdrivers
 
         inline std::uint32_t get_data_register() noexcept;
         inline std::uint8_t read_char() noexcept;
-        inline void put_char(const std::uint8_t & ch) noexcept;
+        inline void put_char(const std::uint8_t &ch) noexcept;
 
         inline auto get_write_register_address() noexcept;
         inline auto get_read_register_address() noexcept;

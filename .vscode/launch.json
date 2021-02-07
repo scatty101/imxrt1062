@@ -48,6 +48,9 @@
                     }
                 ]
             },
+            "overrideLaunchCommands": [
+                 "load build/tests/drivers/drivers_tests",
+            ],
             "preLaunchCommands": [
                 "set mem inaccessible-by-default off",
                 "monitor speed 1000",
@@ -58,27 +61,7 @@
                 "monitor speed auto",
                 "monitor flash breakpoints 1",
                 "monitor semihosting enable",
-                "monitor semihosting IOClient 3"
-            ],
-            "postLaunchCommands": [
-                "monitor clrbp",
-                "monitor reset 2",
-                "monitor halt",
-                "monitor reset 0",
-                "thbreak main",
-                "monitor regs",
-                // "continue", // comment for break at main             
-                "monitor halt"             
-            ],
-            "postRestartCommands": [
-                "monitor clrbp",
-                "monitor reset 2",
-                "monitor halt",
-                "monitor reset 0",
-                "tbreak main",
-                "monitor regs",
-                "continue",
-                "monitor halt",
+                "monitor semihosting IOClient 3",
             ],
         },
         {
@@ -125,6 +108,9 @@
                     }
                 ]
             },
+            "overrideLaunchCommands": [
+                 "load build/tests/utility/utility_tests"
+            ],
             "preLaunchCommands": [
                 "set mem inaccessible-by-default off",
                 "monitor speed 1000",
@@ -135,28 +121,8 @@
                 "monitor speed auto",
                 "monitor flash breakpoints 1",
                 "monitor semihosting enable",
-                "monitor semihosting IOClient 3"
+                "monitor semihosting IOClient 3",
             ],
-            "postLaunchCommands": [
-                "monitor clrbp",
-                "monitor reset 2",
-                "monitor halt",
-                "monitor reset 0",
-                "thbreak main",
-                "monitor regs",
-                // "continue", // comment for break at main             
-                "monitor halt"             
-            ],
-            "postRestartCommands": [
-                "monitor clrbp",
-                "monitor reset 2",
-                "monitor halt",
-                "monitor reset 0",
-                "tbreak main",
-                "monitor regs",
-                "continue",
-                "monitor halt",
-            ],
-        }
+        },
     ]
 }
