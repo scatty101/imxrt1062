@@ -1,5 +1,4 @@
 #include "tests.hpp"
-#include <utility.hpp>
 
 /**
  * @brief Our test class with naive clock implementaton.

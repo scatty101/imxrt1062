@@ -1,7 +1,7 @@
-#if !defined IMXRT_DRIVERS_REG_HPP_
+#ifndef IMXRT_DRIVERS_REG_HPP_
 #define IMXRT_DRIVERS_REG_HPP_
 
-#include <hardware.hpp>
+#include <imxrt1062/hardware.hpp>
 
 namespace imxdrivers
 {
@@ -69,9 +69,34 @@ namespace imxdrivers
     }
 
     template <typename reg_t, typename bit_pos_t>
+    static inline bool reg_get_bit(reg_t &reg, const bit_pos_t &bit_pos)
+    {
+        return reg_read(reg) >> bit_pos;
+    }
+
+    template <typename reg_t, typename bit_pos_t>
     static inline constexpr void reg_clear_bit(reg_t &reg, const bit_pos_t &bit_pos)
     {
-#warning "implement this"
+        reg_clear(reg, 1 << bit_pos);
+    }
+
+    template <typename reg_t, typename bit_pos_t>
+    static inline constexpr void reg_set_bit(reg_t &reg, const bit_pos_t &bit_pos)
+    {
+        reg_set(reg, 1 << bit_pos);
+    }
+
+    template <typename reg_t, typename bit_pos_t>
+    static inline constexpr void reg_manipulate_bit(reg_t &reg, const bit_pos_t &bit_pos, const bool &value)
+    {
+        if (value)
+        {
+            reg_set_bit(reg, bit_pos);
+        }
+        else
+        {
+            reg_clear_bit(reg, bit_pos);
+        }
     }
 
 } // namespace imxdrivers

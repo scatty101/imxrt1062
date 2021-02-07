@@ -1,6 +1,6 @@
 #include "systick.hpp"
 
-#include <hardware.hpp>
+#include <imxrt1062/hardware.hpp>
 #include <reg.hpp>
 
 namespace imxdrivers

@@ -1,7 +1,4 @@
 #include "tests.hpp"
-
-#include <utility.hpp>
-
 template <typename T>
 using edge_test_t = imxutility::edge_t<T>;
 

@@ -2,7 +2,6 @@
 #include <stdio.h>
 
 #include <gtest/gtest.h>
-#include <utility.hpp>
 
 int main(void)
 {

@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-#include <hardware.hpp>
+#include <imxrt1062/hardware.hpp>
 
 namespace imxdrivers
 {

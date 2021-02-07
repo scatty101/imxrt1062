@@ -1,6 +1,6 @@
 #include <init.hpp>
 
-#include <hardware.hpp>
+#include <imxrt1062/hardware.hpp>
 
 #include <pin_mux.h>
 #include <board.h>

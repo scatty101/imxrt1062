@@ -1,7 +1,7 @@
 #ifndef IMXRT_DRIVERS_CLOCKS_HPP_
 #define IMXRT_DRIVERS_CLOCKS_HPP_
 
-#include <hardware.hpp>
+#include <imxrt1062/hardware.hpp>
 
 #include "clock_handler.hpp"
 

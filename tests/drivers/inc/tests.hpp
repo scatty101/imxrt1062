@@ -1,10 +1,11 @@
-#if !defined IMXDRIVERS_TESTS_HPP_
+#ifndef IMXDRIVERS_TESTS_HPP_
 #define IMXDRIVERS_TESTS_HPP_
 
 #include <cstdint>
 #include <stdio.h>
 
-#include <hardware.hpp>
+#include <imxrt1062/hardware.hpp>
+#include <imxrt1062/drivers.hpp>
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
