@@ -27,4 +27,14 @@ namespace imxdrivers
         return BOARD_BOOTCLOCKRUN_UART_CLK_ROOT;
     }
 
+    /**
+     * @brief Get the cpu clock value
+     * 
+     * @return constexpr std::uint32_t 
+     */
+    constexpr std::uint32_t get_sys_clock()
+    {
+        return BOARD_BOOTCLOCKRUN_AHB_CLK_ROOT;
+    }
+
 } // namespace imxdrivers

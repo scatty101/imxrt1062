@@ -5,6 +5,7 @@
 
 int main(void)
 {
+
     ::testing::InitGoogleTest();
     auto tests = RUN_ALL_TESTS();
 

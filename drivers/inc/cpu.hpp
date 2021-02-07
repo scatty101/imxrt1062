@@ -35,13 +35,14 @@ namespace imxdrivers
      * @brief Enables cortex m7 core debug
      * 
      */
-    static inline void core_debug_enable() noexcept
-    {
-        reg_set(CoreDebug->DEMCR, CoreDebug_DEMCR_TRCENA_Msk);
-        reg_write(DWT->LAR, 0xC5ACCE55);
-        reg_write(DWT->CYCCNT, 0);
-        reg_set(DWT->CTRL, DWT_CTRL_CYCCNTENA_Msk);
-    }
+    void core_debug_enable() noexcept;
+
+    /**
+     * @brief Sleep for miliseconds based on core cyccles
+     * 
+     * @param miliseconds 
+     */
+    void sleep(std::uint32_t miliseconds) noexcept;
 
 } // namespace imxdrivers
 
