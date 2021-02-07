@@ -1,22 +1,31 @@
 #include "uart_hardware.hpp"
 
-#include <imxrt1062/utility.hpp>
-#include "reg.hpp"
-
 using namespace imxutility;
 
 namespace imxdrivers
 {
-    uart_hardware_t::uart_hardware_t(const uart_hw_t _uart, const uart_config_t &_config) noexcept : uart_(_uart)
+    /**
+    * @brief Construct a new uart hardware t object
+    * 
+    * @param _uart 
+    */
+    uart_hardware_t::uart_hardware_t(const uart_hw_t _uart) noexcept : uart_(_uart)
     {
         uart_hardware_t::enable_clock(_uart);
-        config(_config);
     }
 
+    /**
+     * @brief Destroy the uart hardware t::uart hardware t object
+     * 
+     */
     uart_hardware_t::~uart_hardware_t()
     {
     }
-
+    /**
+     * @brief Config for uart. It also disable uart tx and rx, so after calling this method it must be explicitly enabled
+     * 
+     * @param cfg 
+     */
     void uart_hardware_t::config(const uart_config_t &cfg) noexcept
     {
         enable(false);
@@ -31,7 +40,12 @@ namespace imxdrivers
 
         set_timeout(cfg.timeout);
     }
-
+    /**
+     * @brief Sets hardware to specified baud_enum 
+     * 
+     * @param baud_enum 
+     * @param uart_clock 
+     */
     void uart_hardware_t::set_baud(const uart_baud_rate_t &baud_enum, const std::uint32_t &uart_clock) noexcept
     {
         // SDK implementation
@@ -89,6 +103,12 @@ namespace imxdrivers
         /* write the sbr value to the BAUD registers */
         reg_manipulate_mask(uart_->BAUD, LPUART_BAUD_SBR_MASK, LPUART_BAUD_SBR_SHIFT, sbr);
     }
+
+    /**
+     * @brief Sets data bits config in hardware
+     * 
+     * @param data_bits 
+     */
     void uart_hardware_t::set_data_bits(const uart_data_bits_t &data_bits) noexcept
     {
         const bool data_7_bits = data_bits == uart_data_bits_t::data_bits_7;
@@ -98,12 +118,21 @@ namespace imxdrivers
         reg_manipulate_bit(uart_->CTRL, LPUART_CTRL_M7_SHIFT, data_7_bits);
         reg_manipulate_bit(uart_->CTRL, LPUART_CTRL_M_SHIFT, data_9_bits);
     }
+    /**
+     * @brief Set stop bits config in hardware
+     * 
+     * @param stop_bit_enum 
+     */
     void uart_hardware_t::set_stop_bits(const uart_stop_bit_t &stop_bit_enum) noexcept
     {
         const bool stop_bit_2 = stop_bit_enum == uart_stop_bit_t::stop_bit_2;
         reg_manipulate_bit(uart_->BAUD, LPUART_BAUD_SBNS_SHIFT, stop_bit_2);
     }
-
+    /**
+     * @brief Sets parity config in hardware
+     * 
+     * @param parity_enum 
+     */
     void uart_hardware_t::set_parity(const uart_parity_t &parity_enum) noexcept
     {
         const bool even = parity_enum == uart_parity_t::even;
@@ -112,52 +141,55 @@ namespace imxdrivers
         reg_manipulate_bit(uart_->CTRL, LPUART_CTRL_PE_SHIFT, even or odd);
         reg_manipulate_bit(uart_->CTRL, LPUART_CTRL_PT_SHIFT, odd);
     }
-
+    /**
+     * @brief Sets rx timeout config in hardware
+     * 
+     * @param timeout_enum 
+     */
+    void uart_hardware_t::set_timeout(const uart_timeout_t &timeout_enum) noexcept
+    {
+        auto timeout = enum_value(timeout_enum);
+        reg_manipulate_mask(uart_->CTRL, LPUART_CTRL_IDLECFG_MASK, LPUART_CTRL_IDLECFG_SHIFT, timeout);
+    }
+    /**
+     * @brief Enables / disables tx and rx
+     * 
+     * @param enable 
+     */
     void uart_hardware_t::enable(const bool &enable) noexcept
     {
         tx_enable(enable);
         rx_enable(enable);
     }
 
-    inline void uart_hardware_t::tx_enable(const bool &enable) noexcept
-    {
-        reg_manipulate_bit(uart_->CTRL, LPUART_CTRL_TE_SHIFT, enable);
-    }
-    inline void uart_hardware_t::rx_enable(const bool &enable) noexcept
-    {
-        reg_manipulate_bit(uart_->CTRL, LPUART_CTRL_RE_SHIFT, enable);
-    }
-
+    /**
+     * @brief Enables / disables debug mode
+     * 
+     * In debug mode RX is connected to TX.
+     * 
+     * @param enable 
+     */
     void uart_hardware_t::debug(const bool &enable) noexcept
     {
         reg_manipulate_bit(uart_->CTRL, LPUART_CTRL_LOOPS_SHIFT, enable);
     }
 
-    inline bool uart_hardware_t::tx_empty() noexcept
-    {
-        return irq_status(irq_status_flags_t::tx_empty);
-    }
-    inline bool uart_hardware_t::rx_full() noexcept
-    {
-        return irq_status(irq_status_flags_t::rx_full);
-    }
-
+    /**
+     * @brief Enable access for DMA to access hardware uart registers
+     * 
+     * @param tx_enable 
+     * @param rx_enable 
+     */
     void uart_hardware_t::dma_access_enable(const bool &tx_enable, const bool &rx_enable) noexcept
     {
         dma_access_tx_enable(tx_enable);
         dma_access_rx_enable(rx_enable);
     }
 
-    inline void uart_hardware_t::dma_access_tx_enable(const bool &enable) noexcept
-    {
-        reg_manipulate_bit(uart_->BAUD, LPUART_BAUD_TDMAE_SHIFT, enable);
-    }
-
-    inline void uart_hardware_t::dma_access_rx_enable(const bool &enable) noexcept
-    {
-        reg_manipulate_bit(uart_->BAUD, LPUART_BAUD_RDMAE_SHIFT, enable);
-    }
-
+    /**
+     * @brief Hardware reset of peripheral
+     * 
+     */
     void uart_hardware_t::hardware_reset() noexcept
     {
         reg_set(uart_->GLOBAL, LPUART_GLOBAL_RST_MASK);
@@ -165,6 +197,10 @@ namespace imxdrivers
         reg_clear(uart_->GLOBAL, LPUART_GLOBAL_RST_MASK);
     }
 
+    /**
+     * @brief Disables internal fifo for LPUART
+     * 
+     */
     void uart_hardware_t::fifo_disable() noexcept
     {
         /*fifo flush and disable */
@@ -173,42 +209,11 @@ namespace imxdrivers
         reg_clear_bit(uart_->FIFO, LPUART_FIFO_RXFE_SHIFT);
         reg_clear_bit(uart_->FIFO, LPUART_FIFO_TXFE_SHIFT);
     }
-
-    inline std::uint32_t uart_hardware_t::get_data_register() noexcept
-    {
-        return reg_get(uart_->CTRL);
-    }
-    inline std::uint8_t uart_hardware_t::read_char() noexcept
-    {
-        return static_cast<std::uint8_t>(get_data_register());
-    }
-    inline void uart_hardware_t::put_char(const std::uint8_t &ch) noexcept
-    {
-        reg_write(uart_->DATA, ch);
-    }
-
-    inline auto uart_hardware_t::get_write_register_address() noexcept
-    {
-        return &uart_->DATA;
-    }
-    inline auto uart_hardware_t::get_read_register_address() noexcept
-    {
-        return &uart_->DATA;
-    }
-
-    inline void uart_hardware_t::irq_enable(const irq_enable_flags_t &enable_flag, const bool &enable) noexcept
-    {
-        reg_manipulate_bit(uart_->CTRL, enum_value(enable_flag), enable);
-    }
-    inline bool uart_hardware_t::irq_status(const irq_status_flags_t &flag) noexcept
-    {
-        return reg_get_bit(uart_->STAT, enum_value(flag));
-    }
-    inline void uart_hardware_t::irq_clear(const irq_status_flags_t &clear_flag) noexcept
-    {
-        reg_set_bit(uart_->STAT, enum_value(clear_flag));
-    }
-
+    /**
+     * @brief Enables needed clock
+     * 
+     * @param uart 
+     */
     void uart_hardware_t::enable_clock(const uart_hw_t uart)
     {
         const static auto uart_peripherals = LPUART_BASE_PTRS;

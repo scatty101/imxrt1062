@@ -3,6 +3,9 @@
 
 #include <cstdint>
 #include <imxrt1062/hardware.hpp>
+#include <imxrt1062/utility.hpp>
+
+#include "reg.hpp"
 #include "clocks.hpp"
 
 namespace imxdrivers
@@ -50,7 +53,14 @@ namespace imxdrivers
 
     enum class uart_timeout_t
     {
-
+        timeout_1_char = 0b000,
+        timeout_2_char = 0b001,
+        timeout_4_char = 0b010,
+        timeout_8_char = 0b011,
+        timeout_16_char = 0b100,
+        timeout_32_char = 0b101,
+        timeout_64_char = 0b110,
+        timeout_128_char = 0b111,
     };
 
     struct uart_config_t
@@ -91,29 +101,70 @@ namespace imxdrivers
             line_idle = LPUART_STAT_IDLE_SHIFT,
         };
 
+        /**
+         * @brief Copy ctor is forbidden
+         * 
+         */
         uart_hardware_t(const uart_hardware_t &) = delete;
+        /**
+         * @brief Move ctor is forbidden
+         * 
+         * @return uart_hardware_t& 
+         */
         uart_hardware_t &operator=(const uart_hardware_t &) = delete;
 
-        uart_hardware_t(const uart_hw_t _uart, const uart_config_t &_config) noexcept;
+        uart_hardware_t(const uart_hw_t _uart) noexcept;
         ~uart_hardware_t();
 
         void config(const uart_config_t &cfg) noexcept;
         void enable(const bool &enable) noexcept;
         void debug(const bool &enable) noexcept;
 
-        inline std::uint32_t get_data_register() noexcept;
-        inline std::uint8_t read_char() noexcept;
-        inline void put_char(const std::uint8_t &ch) noexcept;
+        inline bool tx_empty() noexcept
+        {
+            return irq_status(irq_status_flags_t::tx_empty);
+        }
+        inline bool rx_full() noexcept
+        {
+            return irq_status(irq_status_flags_t::rx_full);
+        }
 
-        inline auto get_write_register_address() noexcept;
-        inline auto get_read_register_address() noexcept;
+    protected:
+        inline std::uint32_t get_data_register() noexcept
+        {
+            return reg_get(uart_->CTRL);
+        }
+        inline std::uint8_t read_char() noexcept
+        {
+            return static_cast<std::uint8_t>(get_data_register());
+        }
+        inline void write_char(const std::uint8_t &ch) noexcept
+        {
+            reg_write(uart_->DATA, ch);
+        }
 
-        inline bool tx_empty() noexcept;
-        inline bool rx_full() noexcept;
+        inline auto get_write_register_address() noexcept
+        {
+            return &uart_->DATA;
+        }
+        inline auto get_read_register_address() noexcept
+        {
+            return &uart_->DATA;
+        }
 
-        inline void irq_enable(const irq_enable_flags_t &enable_flag, const bool &enable) noexcept;
-        inline bool irq_status(const irq_status_flags_t &flag) noexcept;
-        inline void irq_clear(const irq_status_flags_t &clear_flag) noexcept;
+        inline void irq_enable(const irq_enable_flags_t &enable_flag, const bool &enable) noexcept
+        {
+            reg_manipulate_bit(uart_->CTRL, imxutility::enum_value(enable_flag), enable);
+        }
+        inline bool irq_status(const irq_status_flags_t &flag) noexcept
+        {
+            return reg_get_bit(uart_->STAT, imxutility::enum_value(flag));
+        }
+        inline void irq_clear(const irq_status_flags_t &clear_flag) noexcept
+        {
+            reg_set_bit(uart_->STAT, imxutility::enum_value(clear_flag));
+        }
+
         void dma_access_enable(const bool &tx_enable, const bool &rx_enable) noexcept;
 
     private:
@@ -123,10 +174,23 @@ namespace imxdrivers
 
         void fifo_disable() noexcept;
 
-        inline void dma_access_tx_enable(const bool &enable) noexcept;
-        inline void dma_access_rx_enable(const bool &enable) noexcept;
-        inline void tx_enable(const bool &enable) noexcept;
-        inline void rx_enable(const bool &enable) noexcept;
+        inline void dma_access_tx_enable(const bool &enable) noexcept
+        {
+            reg_manipulate_bit(uart_->BAUD, LPUART_BAUD_TDMAE_SHIFT, enable);
+        }
+
+        inline void dma_access_rx_enable(const bool &enable) noexcept
+        {
+            reg_manipulate_bit(uart_->BAUD, LPUART_BAUD_RDMAE_SHIFT, enable);
+        }
+        inline void tx_enable(const bool &enable) noexcept
+        {
+            reg_manipulate_bit(uart_->CTRL, LPUART_CTRL_TE_SHIFT, enable);
+        }
+        inline void rx_enable(const bool &enable) noexcept
+        {
+            reg_manipulate_bit(uart_->CTRL, LPUART_CTRL_RE_SHIFT, enable);
+        }
 
         void set_baud(const uart_baud_rate_t &baud, const std::uint32_t &uart_clock) noexcept;
         void set_stop_bits(const uart_stop_bit_t &stop_bit) noexcept;

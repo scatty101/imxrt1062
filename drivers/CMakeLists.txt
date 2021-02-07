@@ -61,7 +61,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}/src/init.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/src/clocks.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/src/systick.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/src/uart_hardware.cpp
-
+${CMAKE_CURRENT_SOURCE_DIR}/src/uart.cpp
 )
 # Supress missing declalaration warning for generated startup file
 set_property(SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/sdk/startup/startup_mimxrt1062.cpp

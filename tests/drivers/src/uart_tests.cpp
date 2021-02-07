@@ -1,0 +1,5 @@
+#include "tests.hpp"
+
+TEST(UART_HANDLER, UART_ENABLED_AFTER_INIT)
+{
+}
