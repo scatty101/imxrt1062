@@ -1,23 +1,37 @@
 {
-  "configurations": [
-    {
-      "name": "Win32",
-      "includePath": [
-        "${workspaceFolder}/**",
-        "${workspaceFolder}/hardware/**",
-        "${workspaceFolder}/drivers/**",
-        "${workspaceFolder}/gtest/**",
-        "${workspaceFolder}/utility/**",
-        "C:/nxp/MCUXpressoIDE_11.2.0_4120/ide/tools/arm-none-eabi/include/**"
-      ],
-      "defines": [
-        "_DEBUG",
-        "UNICODE",
-        "_UNICODE"
-      ],
-      "intelliSenseMode": "gcc-arm",
-      "compilerPath": "C:/nxp/MCUXpressoIDE_11.2.0_4120/ide/tools/bin/arm-none-eabi-gcc.exe"
-    }
-  ],
-  "version": 4
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}",
+
+                "${workspaceFolder}/hardware",
+                "${workspaceFolder}/drivers",
+                "${workspaceFolder}/utility",
+
+                "${workspaceFolder}/drivers/imxrt1062/",
+                "${workspaceFolder}/utility/imxrt1062/",
+                "${workspaceFolder}/hardware/imxrt1062/",
+
+                "${workspaceFolder}/hardware/inc/**",
+                "${workspaceFolder}/drivers/inc/**",
+                "${workspaceFolder}/drivers/src/**",
+
+                "${workspaceFolder}/utility/inc/**",
+                "${workspaceFolder}/utility/src/**",
+
+                "C:/nxp/MCUXpressoIDE_11.2.0_4120/ide/tools/arm-none-eabi/include/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "intelliSenseMode": "gcc-arm",
+            "compilerPath": "C:/nxp/MCUXpressoIDE_11.2.0_4120/ide/tools/bin/arm-none-eabi-gcc.exe",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json",
+            // "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ],
+    "version": 4
 }

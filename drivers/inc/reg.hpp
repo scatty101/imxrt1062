@@ -6,12 +6,21 @@
 namespace imxdrivers
 {
     /**
+     * @brief DSB
+     * 
+     */
+    static inline void data_sync()
+    {
+        __DSB();
+    }
+
+    /**
      * @brief Sometimes IRQ are executed so fast, that irq flag isn't cleared until leave of irq. This function solves this problem.
      * 
      */
     static inline void irq_save_exit()
     {
-        __DSB();
+        data_sync();
     }
     /**
      * @brief Performs OR operation.
@@ -65,6 +74,13 @@ namespace imxdrivers
     static inline constexpr reg_t reg_get(const reg_t &reg)
     {
         return reg;
+    }
+
+    template <typename reg_t, typename mask_t, typename shift_t, typename value_t>
+    static inline constexpr void reg_manipulate_mask(reg_t &reg, const mask_t &mask, const shift_t &shift, const value_t &value)
+    {
+        reg_clear(reg, mask);
+        reg_set(reg, (value << shift) & mask);
     }
 
     template <typename reg_t, typename bit_pos_t>

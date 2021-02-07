@@ -1,4 +1,4 @@
-#if !defined IMXRT1062_UTILITY_H_
+#ifndef IMXRT1062_UTILITY_H_
 #define IMXRT1062_UTILITY_H_
 
 #include "inc/array_size.hpp"

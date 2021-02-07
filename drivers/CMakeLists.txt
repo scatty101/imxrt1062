@@ -71,7 +71,8 @@ COMPILE_FLAGS -Wno-missing-declarations)
 # well, we need hardware config
 target_link_libraries(${PROJECT_NAME}
 PUBLIC
-"${PROJECT_NAMESPACE}::hardware")
+"${PROJECT_NAMESPACE}::hardware"
+"${PROJECT_NAMESPACE}::utility")
 
 
 install(TARGETS ${PROJECT_NAME}

@@ -24,15 +24,23 @@ namespace imxdrivers
 
     enum class uart_stop_bit_t
     {
-
+        stop_bit_1,
+        stop_bit_2,
     };
 
     enum class uart_parity_t
     {
-
+        even,
+        odd,
+        none
     };
 
     enum class uart_data_bits_t
+    {
+
+    };
+
+    enum class uart_timeout_t
     {
 
     };
@@ -43,6 +51,7 @@ namespace imxdrivers
         uart_stop_bit_t stop_bit;
         uart_parity_t parity;
         uart_data_bits_t data_bits;
+        uart_timeout_t timeout;
     };
 
     class uart_hardware_t
@@ -50,6 +59,30 @@ namespace imxdrivers
         const uart_hw_t uart_;
 
     public:
+        enum class irq_enable_flags_t
+        {
+            overrun = LPUART_CTRL_ORIE_SHIFT,
+            noise_error = LPUART_CTRL_NEIE_SHIFT,
+            framing_error = LPUART_CTRL_FEIE_SHIFT,
+            parity_error = LPUART_CTRL_PEIE_SHIFT,
+            tx_empty = LPUART_CTRL_TIE_SHIFT,
+            tx_complete = LPUART_CTRL_TCIE_SHIFT,
+            rx_full = LPUART_CTRL_RIE_SHIFT,
+            line_idle = LPUART_CTRL_ILIE_SHIFT,
+
+        };
+        enum class irq_status_flags_t
+        {
+            overrun = LPUART_STAT_OR_SHIFT,
+            noise_error = LPUART_STAT_NF_SHIFT,
+            framing_error = LPUART_STAT_FE_SHIFT,
+            parity_error = LPUART_STAT_PF_SHIFT,
+            tx_empty = LPUART_STAT_TDRE_SHIFT,
+            tx_complete = LPUART_STAT_TC_SHIFT,
+            rx_full = LPUART_STAT_RDRF_SHIFT,
+            line_idle = LPUART_STAT_IDLE_SHIFT,
+        };
+
         uart_hardware_t(const uart_hardware_t &) = delete;
         uart_hardware_t &operator=(const uart_hardware_t &) = delete;
 
@@ -60,16 +93,40 @@ namespace imxdrivers
         void enable(const bool &enable) noexcept;
         void debug(const bool &enable) noexcept;
 
+        inline std::uint32_t get_data_register() noexcept;
+        inline std::uint8_t read_char() noexcept;
+        inline void put_char(const std::uint8_t & ch) noexcept;
+
+        inline auto get_write_register_address() noexcept;
+        inline auto get_read_register_address() noexcept;
+
         inline bool tx_empty() noexcept;
         inline bool rx_full() noexcept;
 
+        inline void irq_enable(const irq_enable_flags_t &enable_flag, const bool &enable) noexcept;
+        inline bool irq_status(const irq_status_flags_t &flag) noexcept;
+        inline void irq_clear(const irq_status_flags_t &clear_flag) noexcept;
         void dma_access_enable(const bool &tx_enable, const bool &rx_enable) noexcept;
 
     private:
+        static void enable_clock(const uart_hw_t uart);
+
+        void hardware_reset() noexcept;
+
+        void fifo_disable() noexcept;
+
         inline void dma_access_tx_enable(const bool &enable) noexcept;
         inline void dma_access_rx_enable(const bool &enable) noexcept;
-        static void enable_clock(const uart_hw_t uart);
+        inline void tx_enable(const bool &enable) noexcept;
+        inline void rx_enable(const bool &enable) noexcept;
+
+        void set_baud(const uart_baud_rate_t &baud, const std::uint32_t &uart_clock) noexcept;
+        void set_stop_bits(const uart_stop_bit_t &stop_bit) noexcept;
+        void set_data_bits(const uart_data_bits_t &data_bits) noexcept;
+        void set_parity(const uart_parity_t &parity) noexcept;
+        void set_timeout(const uart_timeout_t &timeout) noexcept;
     };
+
 } // namespace imxdrivers
 
 #endif // IMXRT_DRIVERS_UART_HARDWARE_HPP_

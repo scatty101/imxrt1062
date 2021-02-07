@@ -2,7 +2,6 @@
 
 #include <cstdint>
 
-#include <board/clock_config.h>
 #include <drivers/fsl_clock.h>
 
 namespace imxdrivers
@@ -17,24 +16,5 @@ namespace imxdrivers
         CLOCK_EnableClock(clock);
     }
 
-    /**
-     * @brief Returns predefined value for uart clock
-     * 
-     * @return constexpr std::uint32_t 
-     */
-    constexpr std::uint32_t get_uart_clock()
-    {
-        return BOARD_BOOTCLOCKRUN_UART_CLK_ROOT;
-    }
-
-    /**
-     * @brief Returns predefined value for cpu clockk
-     * 
-     * @return constexpr std::uint32_t 
-     */
-    constexpr std::uint32_t get_sys_clock()
-    {
-        return BOARD_BOOTCLOCKRUN_AHB_CLK_ROOT;
-    }
 
 } // namespace imxdrivers

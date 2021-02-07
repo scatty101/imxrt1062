@@ -45,13 +45,6 @@ TEST(REG, REG_WRITE)
 
 TEST(REG, REG_GET_BIT)
 {
-    // volatile std::uint32_t reg = 0b1001;
-
-    // EXPECT_TRUE(reg_get_bit(reg, 3));
-    // EXPECT_FALSE(reg_get_bit(reg, 2));
-    // EXPECT_FALSE(reg_get_bit(reg, 1));
-    // EXPECT_TRUE(reg_get_bit(reg, 0));
-
     volatile std::uint32_t reg = 0xfab12346;
 
     for (auto bit_pos = 0; bit_pos < std::numeric_limits<std::uint32_t>::digits; ++bit_pos)
