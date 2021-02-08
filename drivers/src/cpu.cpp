@@ -4,11 +4,10 @@
 #include "clocks.hpp"
 namespace imxdrivers
 {
-
     template <std::uint32_t sys_clock, std::uint32_t resolution>
     class core_timer_t : public imxutility::timer_t<std::uint32_t>
     {
-        constexpr auto div = sys_clock / resolution;
+        constexpr static auto div = sys_clock / resolution;
 
     public:
         core_timer_t()

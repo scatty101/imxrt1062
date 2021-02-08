@@ -58,6 +58,8 @@ ${CMAKE_CURRENT_SOURCE_DIR}/sdk/xip/fsl_flexspi_nor_boot.c
 # Own drivers cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/src/init.cpp
 
+${CMAKE_CURRENT_SOURCE_DIR}/src/cpu.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/src/mux.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/src/clocks.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/src/systick.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/src/uart_hardware.cpp

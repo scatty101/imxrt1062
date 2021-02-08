@@ -10,48 +10,22 @@ namespace imxdrivers
     }
     uart_handler_t::~uart_handler_t() noexcept = default;
 
-    /**
-     * @brief Blocking write
-     * 
-     * @param data 
-     */
-    inline void uart_handler_t::write(const std::uint8_t &data) noexcept
+    void uart_handler_t::write(std::uint8_t *input_buffer, const std::size_t &size) noexcept
     {
-        while (!tx_empty())
-        {
-            continue;
-        }
-        write_char(data);
-    }
-    inline std::uint8_t uart_handler_t::read() noexcept
-    {
-        while (!rx_full())
-        {
-            continue;
-        }
-
-        return read_char();
-    }
-
-    void uart_handler_t::write(const std::uint8_t *input_buffer, const std::size_t &size) noexcept
-    {
-        std::uint8_t *start = const_cast<std::uint8_t *>(input_buffer);
         const std::uint8_t *END = input_buffer + size;
-        while (start != END)
+        while (input_buffer != END)
         {
-            write(*start);
-            ++start;
+            write(*input_buffer);
+            ++input_buffer;
         }
     }
-    void uart_handler_t::read(const std::uint8_t *output_buffer, const std::size_t &size) noexcept
+    void uart_handler_t::read(std::uint8_t *output_buffer, const std::size_t &size) noexcept
     {
-        std::uint8_t *start = const_cast<std::uint8_t *>(output_buffer);
         const std::uint8_t *END = output_buffer + size;
-        while (start != END)
+        while (output_buffer != END)
         {
-            *start = read();
-            start++;
+            *output_buffer = read();
+            output_buffer++;
         }
     }
-
 } // namespace imxdrivers

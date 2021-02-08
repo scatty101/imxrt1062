@@ -1,5 +1,5 @@
-#if !defined IMXRT_SYSTICK_HPP_
-#define IMXRT_SYSTICK_HPP_
+#ifndef IMXRT_DRIVERS_SYSTICK_HPP_
+#define IMXRT_DRIVERS_SYSTICK_HPP_
 
 #include <cstdint>
 
@@ -26,4 +26,4 @@ namespace imxdrivers
 
 } // namespace imxdrivers
 
-#endif // IMXRT_SYSTICK_HPP_
+#endif // IMXRT_DRIVERS_SYSTICK_HPP_
