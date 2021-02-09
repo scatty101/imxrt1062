@@ -28,6 +28,7 @@ namespace imxdrivers
      */
     void uart_hardware_t::config(const uart_config_t &cfg) noexcept
     {
+        imxdrivers::enable_clock(kCLOCK_Lpuart1);
         enable(false);
 
         hardware_reset();
@@ -39,6 +40,8 @@ namespace imxdrivers
         set_parity(cfg.parity);
 
         set_timeout(cfg.timeout);
+
+        uart_->WATER = (LPUART_WATER_RXWATER(1) | LPUART_WATER_TXWATER(1));
     }
     /**
      * @brief Sets hardware to specified baud_enum 

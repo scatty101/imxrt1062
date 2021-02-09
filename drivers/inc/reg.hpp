@@ -79,8 +79,10 @@ namespace imxdrivers
     template <typename reg_t, typename mask_t, typename shift_t, typename value_t>
     static inline constexpr void reg_manipulate_mask(reg_t &reg, const mask_t &mask, const shift_t &shift, const value_t &value)
     {
-        reg_clear(reg, mask);
-        reg_set(reg, (value << shift) & mask);
+        auto reg_temp = reg_get(reg);
+        reg_clear(reg_temp, mask);
+        reg_set(reg_temp, (value << shift) & mask);
+        reg_write(reg, reg_temp);
     }
 
     template <typename reg_t, typename bit_pos_t>
