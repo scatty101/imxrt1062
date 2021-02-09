@@ -31,7 +31,6 @@ namespace imxdrivers
             {
                 continue;
             }
-
             return read_char();
         }
 

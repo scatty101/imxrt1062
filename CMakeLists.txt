@@ -31,11 +31,11 @@ add_definitions(-DCPU_MIMXRT1062CVL5A
                 -DSDK_OS_BAREMETAL 
                 -DSDK_DEBUGCONSOLE=0 
                 -DCR_INTEGER_PRINTF 
-                -D__MCUXPRESSO
-                -DPRINTF_FLOAT_ENABLE=0  
+                -DPRINTF_FLOAT_ENABLE=0 
+                -D__MCUXPRESSO 
                 -D__USE_CMSIS 
                 -DDEBUG 
-                -D__NEWLIB__
+                -D__NEWLIB__ 
                 -DDISABLE_WDOG=1 
 )
 

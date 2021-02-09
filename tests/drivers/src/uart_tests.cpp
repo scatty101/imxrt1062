@@ -14,7 +14,7 @@ uart_config_t uart_cfg =
 uart_handler_t test_uart(LPUART1, uart_cfg);
 // AD_B0_12 TXD
 // AD_B0_13 RXD
-/*
+
 pin_mux_t uart_tx_pin{
     {IOMUXC_GPIO_AD_B0_12_LPUART1_TX, false},
     {uart_handler_t::tx_pad_config()},
@@ -24,24 +24,32 @@ pin_mux_t uart_rx_pin{
     {IOMUXC_GPIO_AD_B0_13_LPUART1_RX, false},
     {uart_handler_t::rx_pad_config()},
 };
-*/
 
 TEST(UART_HANDLER, UART_ENABLED_AFTER_INIT)
 {
-    IOMUXC_SetPinMux(IOMUXC_GPIO_AD_B0_12_LPUART1_TX, false);
-    IOMUXC_SetPinMux(IOMUXC_GPIO_AD_B0_13_LPUART1_RX, false);
-    constexpr char TEST_CHAR = 'A';
+    constexpr char TEST_CHAR = 'B';
     test_uart.debug(true);
+
     test_uart.write(TEST_CHAR);
-    std::uint32_t data =   LPUART_DATA_FRETSC LPUART1->DATA;
-    std::uint8_t data_8 = static_cast<std::uint8_t>(data);
-    printf("data 32 %lu data_8 %c\n", data, data_8);
-    EXPECT_EQ(TEST_CHAR, LPUART1->DATA);
-    /*
-    while (1)
+    auto data = test_uart.read();
+
+    EXPECT_EQ(TEST_CHAR, data);
+}
+
+TEST(UART_HANDLER, TRANSFER_A_LOT_OF_CHARS)
+{
+    char TEST_ARRAY[255];
+    char ch = 0;
+    for (auto &data : TEST_ARRAY)
     {
-        test_uart.write(TEST_CHAR);
-        imxdrivers::sleep(100);
+        data = ch++;
     }
-    */
+
+    test_uart.debug(true);
+
+    for (auto &data : TEST_ARRAY)
+    {
+        test_uart.write(data);
+        EXPECT_EQ(data, test_uart.read());
+    }
 }

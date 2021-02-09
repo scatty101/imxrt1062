@@ -132,7 +132,7 @@ namespace imxdrivers
     protected:
         inline std::uint32_t get_data_register() noexcept
         {
-            return reg_get(uart_->CTRL);
+            return reg_get(uart_->DATA);
         }
         inline std::uint8_t read_char() noexcept
         {
