@@ -167,51 +167,51 @@ settings:
  ******************************************************************************/
 const clock_arm_pll_config_t armPllConfig_BOARD_BootClockRUN =
     {
-        .loopDivider = 100,                       /* PLL loop divider, Fout = Fin * 50 */
-        .src = 0,                                 /* Bypass clock source, 0 - OSC 24M, 1 - CLK1_P and CLK1_N */
-    };
+        .loopDivider = 100, /* PLL loop divider, Fout = Fin * 50 */
+        .src = 0,           /* Bypass clock source, 0 - OSC 24M, 1 - CLK1_P and CLK1_N */
+};
 const clock_sys_pll_config_t sysPllConfig_BOARD_BootClockRUN =
     {
-        .loopDivider = 1,                         /* PLL loop divider, Fout = Fin * ( 20 + loopDivider*2 + numerator / denominator ) */
-        .numerator = 0,                           /* 30 bit numerator of fractional loop divider */
-        .denominator = 1,                         /* 30 bit denominator of fractional loop divider */
-        .src = 0,                                 /* Bypass clock source, 0 - OSC 24M, 1 - CLK1_P and CLK1_N */
-    };
+        .loopDivider = 1, /* PLL loop divider, Fout = Fin * ( 20 + loopDivider*2 + numerator / denominator ) */
+        .numerator = 0,   /* 30 bit numerator of fractional loop divider */
+        .denominator = 1, /* 30 bit denominator of fractional loop divider */
+        .src = 0,         /* Bypass clock source, 0 - OSC 24M, 1 - CLK1_P and CLK1_N */
+};
 const clock_usb_pll_config_t usb1PllConfig_BOARD_BootClockRUN =
     {
-        .loopDivider = 0,                         /* PLL loop divider, Fout = Fin * 20 */
-        .src = 0,                                 /* Bypass clock source, 0 - OSC 24M, 1 - CLK1_P and CLK1_N */
-    };
+        .loopDivider = 0, /* PLL loop divider, Fout = Fin * 20 */
+        .src = 0,         /* Bypass clock source, 0 - OSC 24M, 1 - CLK1_P and CLK1_N */
+};
 const clock_usb_pll_config_t usb2PllConfig_BOARD_BootClockRUN =
     {
-        .loopDivider = 0,                         /* PLL loop divider, Fout = Fin * 20 */
-        .src = 0,                                 /* Bypass clock source, 0 - OSC 24M, 1 - CLK1_P and CLK1_N */
-    };
+        .loopDivider = 0, /* PLL loop divider, Fout = Fin * 20 */
+        .src = 0,         /* Bypass clock source, 0 - OSC 24M, 1 - CLK1_P and CLK1_N */
+};
 const clock_audio_pll_config_t audioPllConfig_BOARD_BootClockRUN =
     {
-        .loopDivider = 28,                        /* PLL loop divider, Fout = Fin * ( loopDivider + numerator / denominator ) */
-        .postDivider = 4,                         /* Divider after PLL */
-        .numerator = 1,                           /* 30 bit numerator of fractional loop divider, Fout = Fin * ( loopDivider + numerator / denominator ) */
-        .denominator = 960000,                    /* 30 bit denominator of fractional loop divider, Fout = Fin * ( loopDivider + numerator / denominator ) */
-        .src = 0,                                 /* Bypass clock source, 0 - OSC 24M, 1 - CLK1_P and CLK1_N */
-    };
+        .loopDivider = 28,     /* PLL loop divider, Fout = Fin * ( loopDivider + numerator / denominator ) */
+        .postDivider = 4,      /* Divider after PLL */
+        .numerator = 1,        /* 30 bit numerator of fractional loop divider, Fout = Fin * ( loopDivider + numerator / denominator ) */
+        .denominator = 960000, /* 30 bit denominator of fractional loop divider, Fout = Fin * ( loopDivider + numerator / denominator ) */
+        .src = 0,              /* Bypass clock source, 0 - OSC 24M, 1 - CLK1_P and CLK1_N */
+};
 const clock_video_pll_config_t videoPllConfig_BOARD_BootClockRUN =
     {
-        .loopDivider = 28,                        /* PLL loop divider, Fout = Fin * ( loopDivider + numerator / denominator ) */
-        .postDivider = 4,                         /* Divider after PLL */
-        .numerator = 1,                           /* 30 bit numerator of fractional loop divider, Fout = Fin * ( loopDivider + numerator / denominator ) */
-        .denominator = 960000,                    /* 30 bit denominator of fractional loop divider, Fout = Fin * ( loopDivider + numerator / denominator ) */
-        .src = 0,                                 /* Bypass clock source, 0 - OSC 24M, 1 - CLK1_P and CLK1_N */
-    };
+        .loopDivider = 28,     /* PLL loop divider, Fout = Fin * ( loopDivider + numerator / denominator ) */
+        .postDivider = 4,      /* Divider after PLL */
+        .numerator = 1,        /* 30 bit numerator of fractional loop divider, Fout = Fin * ( loopDivider + numerator / denominator ) */
+        .denominator = 960000, /* 30 bit denominator of fractional loop divider, Fout = Fin * ( loopDivider + numerator / denominator ) */
+        .src = 0,              /* Bypass clock source, 0 - OSC 24M, 1 - CLK1_P and CLK1_N */
+};
 const clock_enet_pll_config_t enetPllConfig_BOARD_BootClockRUN =
     {
-        .enableClkOutput = true,                  /* Enable the PLL providing the ENET 125MHz reference clock */
-        .enableClkOutput1 = true,                 /* Enable the PLL providing the ENET2 125MHz reference clock */
-        .enableClkOutput25M = true,               /* Enable the PLL providing the ENET 25MHz reference clock */
-        .loopDivider = 3,                         /* Set frequency of ethernet reference clock to 125 MHz */
-        .loopDivider1 = 0,                        /* Set frequency of ethernet reference clock to 25 MHz */
-        .src = 0,                                 /* Bypass clock source, 0 - OSC 24M, 1 - CLK1_P and CLK1_N */
-    };
+        .enableClkOutput = true,    /* Enable the PLL providing the ENET 125MHz reference clock */
+        .enableClkOutput1 = true,   /* Enable the PLL providing the ENET2 125MHz reference clock */
+        .enableClkOutput25M = true, /* Enable the PLL providing the ENET 25MHz reference clock */
+        .loopDivider = 3,           /* Set frequency of ethernet reference clock to 125 MHz */
+        .loopDivider1 = 0,          /* Set frequency of ethernet reference clock to 25 MHz */
+        .src = 0,                   /* Bypass clock source, 0 - OSC 24M, 1 - CLK1_P and CLK1_N */
+};
 /*******************************************************************************
  * Code for BOARD_BootClockRUN configuration
  ******************************************************************************/
@@ -422,7 +422,7 @@ void BOARD_BootClockRUN(void)
      * Note: If another clock source is selected for SEMC, user may want to avoid changing that clock as well.*/
 #ifndef SKIP_SYSCLK_INIT
 #if defined(XIP_BOOT_HEADER_DCD_ENABLE) && (XIP_BOOT_HEADER_DCD_ENABLE == 1)
-    #warning "SKIP_SYSCLK_INIT should be defined to keep system pll (selected to be SEMC source clock in SDK projects) unchanged."
+#warning "SKIP_SYSCLK_INIT should be defined to keep system pll (selected to be SEMC source clock in SDK projects) unchanged."
 #endif
     /* Init System PLL. */
     CLOCK_InitSysPll(&sysPllConfig_BOARD_BootClockRUN);
@@ -438,7 +438,7 @@ void BOARD_BootClockRUN(void)
     /* In SDK projects, external flash (configured by FLEXSPI) will be initialized by dcd.
      * With this macro XIP_EXTERNAL_FLASH, usb1 pll (selected to be FLEXSPI clock source in SDK projects) will be left unchanged.
      * Note: If another clock source is selected for FLEXSPI, user may want to avoid changing that clock as well.*/
-#if !(defined(XIP_EXTERNAL_FLASH) && (XIP_EXTERNAL_FLASH == 1))
+#if 1 || !(defined(XIP_EXTERNAL_FLASH) && (XIP_EXTERNAL_FLASH == 1))
     /* Init Usb1 PLL. */
     CLOCK_InitUsb1Pll(&usb1PllConfig_BOARD_BootClockRUN);
     /* Init Usb1 pfd0. */
@@ -478,7 +478,7 @@ void BOARD_BootClockRUN(void)
     CCM_ANALOG->PLL_VIDEO_NUM = CCM_ANALOG_PLL_VIDEO_NUM_A(1);
     CCM_ANALOG->PLL_VIDEO_DENOM = CCM_ANALOG_PLL_VIDEO_DENOM_B(960000);
     pllVideo = (CCM_ANALOG->PLL_VIDEO & (~(CCM_ANALOG_PLL_VIDEO_DIV_SELECT_MASK | CCM_ANALOG_PLL_VIDEO_POWERDOWN_MASK))) |
-               CCM_ANALOG_PLL_VIDEO_ENABLE_MASK |CCM_ANALOG_PLL_VIDEO_DIV_SELECT(28);
+               CCM_ANALOG_PLL_VIDEO_ENABLE_MASK | CCM_ANALOG_PLL_VIDEO_DIV_SELECT(28);
     pllVideo |= CCM_ANALOG_PLL_VIDEO_POST_DIV_SELECT(0);
     CCM_ANALOG->MISC2 = (CCM_ANALOG->MISC2 & (~CCM_ANALOG_MISC2_VIDEO_DIV_MASK)) | CCM_ANALOG_MISC2_VIDEO_DIV(0);
     CCM_ANALOG->PLL_VIDEO = pllVideo;
@@ -526,7 +526,7 @@ void BOARD_BootClockRUN(void)
     /* Set SAI3 MCLK3 clock source. */
     IOMUXC_SetSaiMClkClockSource(IOMUXC_GPR, kIOMUXC_GPR_SAI3MClk3Sel, 0);
     /* Set MQS configuration. */
-    IOMUXC_MQSConfig(IOMUXC_GPR,kIOMUXC_MqsPwmOverSampleRate32, 0);
+    IOMUXC_MQSConfig(IOMUXC_GPR, kIOMUXC_MqsPwmOverSampleRate32, 0);
     /* Set ENET1 Tx clock source. */
     IOMUXC_EnableMode(IOMUXC_GPR, kIOMUXC_GPR_ENET1RefClkMode, false);
     /* Set ENET2 Tx clock source. */
@@ -542,4 +542,3 @@ void BOARD_BootClockRUN(void)
     /* Set SystemCoreClock variable. */
     SystemCoreClock = BOARD_BOOTCLOCKRUN_CORE_CLOCK;
 }
-

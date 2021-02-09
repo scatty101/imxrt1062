@@ -2,24 +2,6 @@
 
 using namespace imxutility;
 
-uint32_t test_get_uart_freq(void)
-{
-    uint32_t freq;
-
-    /* To make it simple, we assume default PLL and divider settings, and the only variable
-       from application is use PLL3 source or OSC source */
-    if (CLOCK_GetMux(kCLOCK_UartMux) == 0) /* PLL3 div6 80M */
-    {
-        freq = (CLOCK_GetPllFreq(kCLOCK_PllUsb1) / 6U) / (CLOCK_GetDiv(kCLOCK_UartDiv) + 1U);
-    }
-    else
-    {
-        freq = CLOCK_GetOscFreq() / (CLOCK_GetDiv(kCLOCK_UartDiv) + 1U);
-    }
-
-    return freq;
-}
-
 namespace imxdrivers
 {
     /**
@@ -50,7 +32,7 @@ namespace imxdrivers
         hardware_reset();
         fifo_disable();
 
-        set_baud(cfg.baud, test_get_uart_freq());
+        set_baud(cfg.baud, get_uart_clock());
         set_stop_bits(cfg.stop_bit);
         set_data_bits(cfg.data_bits);
         set_parity(cfg.parity);
