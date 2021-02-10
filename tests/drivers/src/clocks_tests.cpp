@@ -51,3 +51,24 @@ TEST(CLOCKS, UART_CLOCKS)
     test_clocks.push_back(std::make_pair(kCLOCK_Lpuart8, LPUART8));
     test_spec<imxdrivers::uart_clock_spec_t, typeof(LPUART1)>(uart_clocks, uart_peripherals, test_clocks);
 }
+
+TEST(CLOCKS, DMA_MUX_CLOCKS)
+{
+    const static auto dma_mux_peripherals = DMAMUX_BASE_PTRS;
+    const static auto dma_mux_clocks = DMAMUX_CLOCKS;
+    clock_list_t<DMAMUX_Type *> test_clocks;
+    test_clocks.push_back(std::make_pair(kCLOCK_Dma, DMAMUX));
+
+    test_spec<imxdrivers::dma_mux_clock_spec_t, typeof(DMAMUX)>(dma_mux_clocks, dma_mux_peripherals, test_clocks);
+}
+
+TEST(CLOCKS, DMA_CLOCKS)
+{
+    const static auto dma_peripherals = DMA_BASE_PTRS;
+    const static auto dma_clocks = EDMA_CLOCKS;
+
+    clock_list_t<DMA_Type *> test_clocks;
+    test_clocks.push_back(std::make_pair(kCLOCK_Dma, DMA0));
+
+    test_spec<imxdrivers::dma_clock_spec_t, typeof(DMA0)>(dma_clocks, dma_peripherals, test_clocks);
+}

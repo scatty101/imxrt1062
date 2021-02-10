@@ -7,15 +7,10 @@
 
 namespace imxdrivers
 {
-    class dma_channel_t
+    class dma_t
     {
-        const std::uint32_t ch_;
 
     public:
-        dma_channel_t(const std::uint32_t ch) : ch_(ch)
-        {
-            dma_hardware_t<ch_>::request_clear();
-        }
     };
 } // namespace imxdrivers
 
