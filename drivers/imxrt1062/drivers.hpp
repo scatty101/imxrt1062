@@ -8,5 +8,6 @@
 #include "inc/reg.hpp"
 #include "inc/systick.hpp"
 #include "inc/uart.hpp"
+#include "inc/dma.hpp"
 
 #endif // IMXRT_DRIVERS_HPP_

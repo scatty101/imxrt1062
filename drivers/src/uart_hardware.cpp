@@ -97,10 +97,10 @@ namespace imxdrivers
             reg_write(uart_->BAUD, LPUART_BAUD_BOTHEDGE_MASK);
         }
         /* program the osr value (bit value is one less than actual value) */
-        reg_manipulate_mask(uart_->BAUD, LPUART_BAUD_OSR_MASK, LPUART_BAUD_OSR_SHIFT, osr - 1UL);
+        reg_manipulate(uart_->BAUD, LPUART_BAUD_OSR_MASK, LPUART_BAUD_OSR_SHIFT, osr - 1UL);
 
         /* write the sbr value to the BAUD registers */
-        reg_manipulate_mask(uart_->BAUD, LPUART_BAUD_SBR_MASK, LPUART_BAUD_SBR_SHIFT, sbr);
+        reg_manipulate(uart_->BAUD, LPUART_BAUD_SBR_MASK, LPUART_BAUD_SBR_SHIFT, sbr);
     }
 
     /**
@@ -148,7 +148,7 @@ namespace imxdrivers
     void uart_hardware_t::set_timeout(const uart_timeout_t &timeout_enum) noexcept
     {
         auto timeout = enum_value(timeout_enum);
-        reg_manipulate_mask(uart_->CTRL, LPUART_CTRL_IDLECFG_MASK, LPUART_CTRL_IDLECFG_SHIFT, timeout);
+        reg_manipulate(uart_->CTRL, LPUART_CTRL_IDLECFG_MASK, LPUART_CTRL_IDLECFG_SHIFT, timeout);
     }
     /**
      * @brief Enables / disables tx and rx
