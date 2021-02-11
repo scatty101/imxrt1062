@@ -20,17 +20,17 @@ namespace imxdrivers
      */
     struct dma_tcd_t
     {
-        uint32_t SADDR;       /**< TCD Source Address, array offset: 0x1000, array step: 0x20 */
-        uint16_t SOFF;        /**< TCD Signed Source Address Offset, array offset: 0x1004, array step: 0x20 */
-        uint16_t ATTR;        /**< TCD Transfer Attributes, array offset: 0x1006, array step: 0x20 */
-        uint32_t NBYTES_MLNO; /**< TCD Minor Byte Count (Minor Loop Mapping Disabled), array offset: 0x1008, array step: 0x20 */
-        uint32_t SLAST;       /**< TCD Last Source Address Adjustment, array offset: 0x100C, array step: 0x20 */
-        uint32_t DADDR;       /**< TCD Destination Address, array offset: 0x1010, array step: 0x20 */
-        uint16_t DOFF;        /**< TCD Signed Destination Address Offset, array offset: 0x1014, array step: 0x20 */
-        uint16_t CITER;       /**< TCD Current Minor Loop Link, Major Loop Count (Channel Linking Disabled), array offset: 0x1016, array step: 0x20 */
-        uint32_t DLAST_SGA;   /**< TCD Last Destination Address Adjustment/Scatter Gather Address, array offset: 0x1018, array step: 0x20 */
-        uint16_t CSR;         /**< TCD Control and Status, array offset: 0x101C, array step: 0x20 */
-        uint16_t BITER;       /**< TCD Beginning Minor Loop Link, Major Loop Count (Channel Linking Disabled), array offset: 0x101E, array step: 0x20 */
+        uint32_t SADDR = 0;       /**< TCD Source Address, array offset: 0x1000, array step: 0x20 */
+        uint16_t SOFF = 0;        /**< TCD Signed Source Address Offset, array offset: 0x1004, array step: 0x20 */
+        uint16_t ATTR = 0;        /**< TCD Transfer Attributes, array offset: 0x1006, array step: 0x20 */
+        uint32_t NBYTES_MLNO = 0; /**< TCD Minor Byte Count (Minor Loop Mapping Disabled), array offset: 0x1008, array step: 0x20 */
+        uint32_t SLAST = 0;       /**< TCD Last Source Address Adjustment, array offset: 0x100C, array step: 0x20 */
+        uint32_t DADDR = 0;       /**< TCD Destination Address, array offset: 0x1010, array step: 0x20 */
+        uint16_t DOFF = 0;        /**< TCD Signed Destination Address Offset, array offset: 0x1014, array step: 0x20 */
+        uint16_t CITER = 0;       /**< TCD Current Minor Loop Link, Major Loop Count (Channel Linking Disabled), array offset: 0x1016, array step: 0x20 */
+        uint32_t DLAST_SGA = 0;   /**< TCD Last Destination Address Adjustment/Scatter Gather Address, array offset: 0x1018, array step: 0x20 */
+        uint16_t CSR = 0;         /**< TCD Control and Status, array offset: 0x101C, array step: 0x20 */
+        uint16_t BITER = 0;       /**< TCD Beginning Minor Loop Link, Major Loop Count (Channel Linking Disabled), array offset: 0x101E, array step: 0x20 */
     };
 
     enum class dma_transfer_t
@@ -40,11 +40,10 @@ namespace imxdrivers
         peripheral_to_peripheral,
         peripheral_to_memory,
     };
-    class dma_channel_t
+    struct dma_channel_t
     {
         dma_tcd_t tcd_;
 
-    public:
         dma_channel_t();
         ~dma_channel_t();
 
@@ -119,7 +118,6 @@ namespace imxdrivers
 
         dma_channel_t &set_length(const std::uint16_t &length);
 
-    private:
         std::uint16_t transfer_size(const std::uint16_t &width);
     };
 
