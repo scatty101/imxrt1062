@@ -1,5 +1,5 @@
-#if !defined IMXRT1062_UTILITY_ARRAY_SIZE_H_
-#define IMXRT1062_UTILITY_ARRAY_SIZE_H_
+#ifndef IMXRT_UTILITY_ARRAY_SIZE_H_
+#define IMXRT_UTILITY_ARRAY_SIZE_H_
 
 #include <cstdint>
 
@@ -12,4 +12,4 @@ namespace imxutility
     }
 } // namespace imxutility
 
-#endif // IMXRT1062_UTILITY_ARRAY_SIZE_H_
+#endif // IMXRT_UTILITY_ARRAY_SIZE_H_

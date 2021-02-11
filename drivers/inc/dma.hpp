@@ -4,6 +4,7 @@
 #include <cstdint>
 
 #include "dma_hardware.hpp"
+#include "dma_channel.hpp"
 
 namespace imxdrivers
 {

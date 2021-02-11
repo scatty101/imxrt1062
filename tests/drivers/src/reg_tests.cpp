@@ -86,7 +86,7 @@ TEST(REG, REG_SET_BIT)
 TEST(REG, REG_MANIPULATE_BIT)
 {
     volatile std::uint32_t reg = 0;
-    for (auto bit_pos = 0; bit_pos < std::numeric_limits<std::uint32_t>::digits, ++bit_pos)
+    for (auto bit_pos = 0; bit_pos < std::numeric_limits<std::uint32_t>::digits; ++bit_pos)
     {
         auto value = (bit_pos % 2) == 0;
         reg_manipulate_bit(reg, bit_pos, value);

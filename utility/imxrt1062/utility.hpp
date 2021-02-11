@@ -5,5 +5,6 @@
 #include "inc/enum_value.hpp"
 #include "inc/edge.hpp"
 #include "inc/timer.hpp"
+#include "inc/non_cv_pointer.hpp"
 
 #endif // IMXRT1062_UTILITY_H_

@@ -15,6 +15,7 @@ PRIVATE
 ${CMAKE_CURRENT_SOURCE_DIR}/src/clocks_tests.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/src/reg_tests.cpp
 ${CMAKE_CURRENT_SOURCE_DIR}/src/uart_tests.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/src/dma_tests.cpp
 
 ${CMAKE_CURRENT_SOURCE_DIR}/drivers_tests.cpp
 )
