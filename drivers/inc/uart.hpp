@@ -17,6 +17,11 @@ namespace imxdrivers
         void write(std::uint8_t *input_buffer, const std::size_t &size) noexcept;
         void read(std::uint8_t *output_buffer, const std::size_t &size) noexcept;
 
+        /**
+         * @brief Blocking write 
+         * 
+         * @param data 
+         */
         inline void write(const std::uint8_t &data) noexcept
         {
             while (!tx_empty())
@@ -25,6 +30,12 @@ namespace imxdrivers
             }
             write_char(data);
         }
+
+        /**
+         * @brief Blocking read
+         * 
+         * @return std::uint8_t 
+         */
         inline std::uint8_t read() noexcept
         {
             while (!rx_full())
@@ -34,6 +45,11 @@ namespace imxdrivers
             return read_char();
         }
 
+        /**
+         * @brief Default uart tx pad config
+         * 
+         * @return constexpr pad_config_t 
+         */
         constexpr static pad_config_t tx_pad_config() noexcept
         {
             constexpr pad_config_t UART_TX_CONFIG =
@@ -50,6 +66,12 @@ namespace imxdrivers
 
             return UART_TX_CONFIG;
         }
+
+        /**
+         * @brief Default uart rx pad config
+         * 
+         * @return constexpr pad_config_t 
+         */
         constexpr static pad_config_t rx_pad_config() noexcept
         {
             return tx_pad_config();

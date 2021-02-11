@@ -4,6 +4,13 @@
 #include "clocks.hpp"
 namespace imxdrivers
 {
+
+    /**
+     * @brief Default timer based on cycle counter
+     * 
+     * @tparam sys_clock    sys clock
+     * @tparam resolution   resolution for timer
+     */
     template <std::uint32_t sys_clock, std::uint32_t resolution>
     class core_timer_t : public imxutility::timer_t<std::uint32_t>
     {

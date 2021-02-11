@@ -31,17 +31,7 @@ namespace imxdrivers
         return reg_get(DWT->CYCCNT);
     }
 
-    /**
-     * @brief Enables cortex m7 core debug
-     * 
-     */
     void core_debug_enable() noexcept;
-
-    /**
-     * @brief Sleep for miliseconds based on core cyccles
-     * 
-     * @param miliseconds 
-     */
     void sleep(std::uint32_t miliseconds) noexcept;
 
 } // namespace imxdrivers
