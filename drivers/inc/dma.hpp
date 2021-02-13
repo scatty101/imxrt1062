@@ -37,8 +37,6 @@ namespace imxdrivers
             }
             return false;
         }
-
-    private:
         inline bool busy() noexcept
         {
             return enabled_;

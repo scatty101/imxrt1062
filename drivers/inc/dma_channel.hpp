@@ -18,7 +18,7 @@ namespace imxdrivers
      * Used to config every channel transfer. Just skipped useless union definitions from mcu file
      * 
      */
-    struct dma_tcd_t
+    struct alignas(32) dma_tcd_t
     {
         uint32_t SADDR = 0;       /**< TCD Source Address, array offset: 0x1000, array step: 0x20 */
         uint16_t SOFF = 0;        /**< TCD Signed Source Address Offset, array offset: 0x1004, array step: 0x20 */
