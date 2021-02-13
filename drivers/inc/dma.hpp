@@ -25,7 +25,7 @@ namespace imxdrivers
         inline void start() noexcept
         {
             enabled_ = true;
-            dma_ch_.start();
+            dma_ch_.set_request();
         }
 
         inline bool done() noexcept
