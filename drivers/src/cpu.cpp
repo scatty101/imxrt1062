@@ -14,7 +14,7 @@ namespace imxdrivers
     template <std::uint32_t sys_clock, std::uint32_t resolution>
     class core_timer_t : public imxutility::timer_t<std::uint32_t>
     {
-        constexpr static auto div = sys_clock / resolution;
+        constexpr static auto RESOLUTION_MUL = sys_clock / resolution;
 
     public:
         core_timer_t()
@@ -24,7 +24,12 @@ namespace imxdrivers
 
         virtual std::uint32_t time_elapsed() noexcept override
         {
-            return core_cycles() / div;
+            return core_cycles();
+        }
+
+        inline void restart(const std::uint32_t &time) noexcept
+        {
+            imxutility::timer_t<std::uint32_t>::restart(time * RESOLUTION_MUL);
         }
     };
 

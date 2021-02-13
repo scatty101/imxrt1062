@@ -16,8 +16,9 @@ namespace imxutility
     template <typename T>
     class timer_t
     {
-        T tick_;                                                                                                               /*!< Current tick to detect expiration */
-        bool running_;                                                                                                         /*!< Current timer state */
+        T tick_;       /*!< Current tick to detect expiration */
+        bool running_; /*!< Current timer state */
+
         constexpr static T TIMER_MASK = static_cast<T>((UINTMAX_C(1) << (std::numeric_limits<T>::digits - 1)) - UINTMAX_C(1)); /*!< Mask used to detect expire*/
 
     public:
@@ -104,7 +105,8 @@ namespace imxutility
          */
         inline bool timeout() noexcept
         {
-            const T DELTA = time_elapsed() - tick_;
+            auto time_elapseded = time_elapsed();
+            const T DELTA = time_elapseded - tick_;
             return DELTA <= TIMER_MASK;
         }
     };
